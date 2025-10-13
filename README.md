@@ -22,6 +22,7 @@ Supports
 
 
 ## Credits and Third-Party Libraries
+### Audio decoding
 
 **PlayTray** uses the [BASS audio library](https://www.un4seen.com/)  
 Copyright © 1999–2025 Un4seen Developments Ltd.
@@ -38,7 +39,7 @@ For more information or to obtain a commercial license, please visit [https://ww
 PlayTray itself is open source under the [MIT License](LICENSE).
 
 
-### ⚠️ Important Notice for Forks and Modified Versions
+#### ⚠️ Important Notice for Forks and Modified Versions
 
 If you fork, modify, or redistribute PlayTray, please be aware that the **BASS libraries are not covered by the MIT License**.  
 You must comply with the **BASS licensing terms** from Un4seen Developments.
@@ -49,10 +50,31 @@ You must comply with the **BASS licensing terms** from Un4seen Developments.
 
 If in doubt, review the BASS license documentation provided with the SDK or visit [https://www.un4seen.com/](https://www.un4seen.com/).
 
+### Cover art
+
+**PlayTray** uses the [Discogs API](https://www.discogs.com/)  
+Copyright © 2025 Discogs®.
+
+The cover art displayed on PlayTray is provided by Discogs and requires a valid a free `personal access token`.  
+Users should visit [Discogs developer](https://www.discogs.com/settings/developers) and generate a token <br>
+<img width="311" height="77" alt="image" src="https://github.com/user-attachments/assets/ceed8bc6-76c7-4687-89ff-ec5419450d15" /> <br>
+which should be set on the program under "Cover art support"<br>
+<img width="425" height="103" alt="image" src="https://github.com/user-attachments/assets/9d55f911-239b-453d-b330-bbed77c62caa" /><br>
+
+PlayTray can work without `personal access token` but in that case the cover art wont be displayed.
+ 
+
 ---
 
 ### Acknowledgements
 
-Audio playback powered by BASS  
+Audio playback powered by BASS
+
 © 1999–2025 Un4seen Developments Ltd.  
 www.un4seen.com
+
+
+Cover art powered by Discogs.com  
+© 2025 Discogs®  
+www.discogs.com
+
