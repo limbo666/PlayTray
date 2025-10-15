@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>PlayTray.My.MyApplication</StartupObject>
+    <RootNamespace>PlayTray</RootNamespace>
+    <AssemblyName>PlayTray</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>PlayTray.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>PlayTray.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>PlayTray.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>PlayTray.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons\woofer2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bass.Net">
+      <HintPath>.\Bass.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BroadcastService.vb" />
+    <Compile Include="frmAbout.Designer.vb">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCover.Designer.vb">
+      <DependentUpon>frmCover.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCover.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditJson.Designer.vb">
+      <DependentUpon>frmEditJson.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditJson.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLevel.Designer.vb">
+      <DependentUpon>frmLevel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLyrics.Designer.vb">
+      <DependentUpon>frmLyrics.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLyrics.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpenLink.Designer.vb">
+      <DependentUpon>frmOpenLink.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpenLink.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpenPlaylist.Designer.vb">
+      <DependentUpon>frmOpenPlaylist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpenPlaylist.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings.Designer.vb">
+      <DependentUpon>frmSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSplash.Designer.vb">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTips.Designer.vb">
+      <DependentUpon>frmTips.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTips.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotkeyManager.vb" />
+    <Compile Include="HTTPServer.vb" />
+    <Compile Include="LyricsService.vb" />
+    <Compile Include="modGlobals.vb" />
+    <Compile Include="modMain.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PlaylistParser.vb" />
+    <Compile Include="RegistryExporter.vb" />
+    <Compile Include="SelectedTracksDocument.vb" />
+    <Compile Include="SettingsManager.vb" />
+    <Compile Include="Station.vb" />
+    <Compile Include="TrackHistory.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCover.resx">
+      <DependentUpon>frmCover.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditJson.resx">
+      <DependentUpon>frmEditJson.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLevel.resx">
+      <DependentUpon>frmLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLyrics.resx">
+      <DependentUpon>frmLyrics.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpenLink.resx">
+      <DependentUpon>frmOpenLink.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpenPlaylist.resx">
+      <DependentUpon>frmOpenPlaylist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings.resx">
+      <DependentUpon>frmSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSplash.resx">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTips.resx">
+      <DependentUpon>frmTips.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bassflac.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bass_aac.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="StationManager.vb" />
+    <None Include="Icons\play_icon.ico" />
+    <None Include="Icons\stop_icon.ico" />
+    <Content Include="Images\btn_donate_LG.gif" />
+    <Content Include="Images\MessageBox.png" />
+    <Content Include="Images\MessageBoxBig.gif" />
+    <Content Include="Images\MessageBoxBigger.gif" />
+    <Content Include="Images\MessageBoxBigger2.gif" />
+    <Content Include="Images\MessageBoxMidi.png" />
+    <Content Include="Images\mnu.png" />
+    <Content Include="Images\mnu1.png" />
+    <Content Include="Images\mnu10.png" />
+    <Content Include="Images\mnu2.png" />
+    <Content Include="Images\mnu3.png" />
+    <Content Include="Images\mnu4.png" />
+    <Content Include="Images\mnu5.png" />
+    <Content Include="Images\mnu6.png" />
+    <Content Include="Images\mnu7.png" />
+    <Content Include="Images\mnu8.png" />
+    <Content Include="Images\mnu9.png" />
+    <Content Include="Images\mnufavorites.png" />
+    <Content Include="Images\mnuinfo.png" />
+    <Content Include="Images\mnulink.png" />
+    <Content Include="Images\mnuopen.png" />
+    <Content Include="Images\mnuplay.png" />
+    <Content Include="Images\mnuplaylist.png" />
+    <Content Include="Images\mnuslider.png" />
+    <Content Include="Images\mnustop.png" />
+    <Content Include="Images\mnutool1.png" />
+    <Content Include="Images\mnuwoofer.png" />
+    <Content Include="Images\NoSound.png" />
+    <Content Include="Icons\old.playwoofer2.ico" />
+    <Content Include="Icons\old.stopwoofer2.ico" />
+    <Content Include="Icons\OldPlayWoofer2.ico" />
+    <Content Include="Icons\play.ico" />
+    <Content Include="Icons\playwoofer2.ico" />
+    <Content Include="Icons\Seq5.ico" />
+    <Content Include="Icons\Seq6.ico" />
+    <Content Include="Images\splash_banner.png" />
+    <Content Include="Icons\stop.ico" />
+    <Content Include="Icons\Stop2.ico" />
+    <Content Include="Icons\stopwoofer2.ico" />
+    <Content Include="Images\Time.png" />
+    <Content Include="Images\Toulouba_mid %28160x240%29.png" />
+    <Content Include="Images\woofer-play1.ico" />
+    <Content Include="Images\woofer-stop1.ico" />
+    <Content Include="Images\x.png" />
+    <Content Include="Images\x1.png" />
+    <Content Include="Images\XplodeClearMIDI.gif" />
+    <Content Include="Images\XplodeClearMIDI.png" />
+    <Content Include="Images\XplodeStartWEB.ico" />
+    <Content Include="Images\XplodeStartWEB.png" />
+    <Content Include="Images\XplodeStopWEB.ico" />
+    <Content Include="Images\XplodeStopWEB.png" />
+    <Content Include="Images\YouTube-icon.png" />
+    <Content Include="Images\woofer.png" />
+    <Content Include="Icons\woofer2.ico" />
+    <Content Include="Images\woofer2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

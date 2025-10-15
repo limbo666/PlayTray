@@ -1,0 +1,688 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmMain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:PlayTray\\frmMain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmabout.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmabout.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\hotkeymanager.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\hotkeymanager.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|c:\\users\\nikos.georgousis\\desktop\\play tray\\playtray\\playtray\\frmlyrics.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmlyrics.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|c:\\users\\nikos.georgousis\\desktop\\play tray\\playtray\\playtray\\frmsettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmsettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:PlayTray\\frmSettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|c:\\users\\nikos.georgousis\\desktop\\play tray\\playtray\\playtray\\frmlyrics.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmlyrics.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\settingsmanager.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\settingsmanager.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|c:\\users\\nikos.georgousis\\desktop\\play tray\\playtray\\playtray\\lyricsservice.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\lyricsservice.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\my project\\assemblyinfo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\my project\\assemblyinfo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\modglobals.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\modglobals.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\selectedtracksdocument.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\selectedtracksdocument.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmcover.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmcover.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmeditjson.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmeditjson.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmeditjson.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmeditjson.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmopenlink.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmopenlink.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmlevel.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmlevel.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\stationmanager.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\stationmanager.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\modmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\modmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmopenplaylist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmopenplaylist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmcover.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmcover.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmabout.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmabout.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmtips.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmtips.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmtips.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmtips.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\broadcastservice.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\broadcastservice.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\httpserver.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\httpserver.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|PlayTray||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmopenlink.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmopenlink.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSplash.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:PlayTray\\frmSplash.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSplash.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:PlayTray\\frmSplash.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmabout.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmabout.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmlevel.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmlevel.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\registryexporter.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\registryexporter.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmopenplaylist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmopenplaylist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\frmsettings.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\frmsettings.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\playlistparser.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\playlistparser.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\trackhistory.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\trackhistory.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\station.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\station.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\playtray\\stationmanager.vb||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F996E792-15B4-4F14-8436-E6E3D5CA4DF1}|PlayTray\\PlayTray.vbproj|solutionrelative:playtray\\stationmanager.vb||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{4a9b7e51-aa16-11d0-a8c5-00a0c921a4d2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "frmSettings.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSettings.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmSettings.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSettings.vb [Design]",
+              "RelativeToolTip": "PlayTray\\frmSettings.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-08T19:41:33.69Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmMain.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmMain.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmMain.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmMain.vb [Design]",
+              "RelativeToolTip": "PlayTray\\frmMain.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-08T18:03:50.084Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmMain.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmMain.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmMain.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmMain.vb",
+              "RelativeToolTip": "PlayTray\\frmMain.vb",
+              "ViewState": "AgIAAPAGAAAAAAAAAAAuwAoHAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-08T18:07:07.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HotkeyManager.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\HotkeyManager.vb",
+              "RelativeDocumentMoniker": "PlayTray\\HotkeyManager.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\HotkeyManager.vb",
+              "RelativeToolTip": "PlayTray\\HotkeyManager.vb",
+              "ViewState": "AgIAACUAAAAAAAAAAAA0wEoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T11:40:22.403Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LyricsService.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\LyricsService.vb",
+              "RelativeDocumentMoniker": "PlayTray\\LyricsService.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\LyricsService.vb",
+              "RelativeToolTip": "PlayTray\\LyricsService.vb",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAqwKAAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-15T11:02:08.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "frmOpenLink.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmOpenLink.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmOpenLink.vb",
+              "ToolTip": "D:\\Develompent_Working_Folder\\02.VB\\PLAY TRAY\\PlayTray\\PlayTray\\frmOpenLink.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T05:21:21.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmAbout.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmAbout.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmAbout.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmAbout.vb",
+              "RelativeToolTip": "PlayTray\\frmAbout.vb",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAAAIkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T06:55:44.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmSettings.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSettings.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmSettings.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSettings.vb",
+              "RelativeToolTip": "PlayTray\\frmSettings.vb",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAqwJsAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-08T19:57:18.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmLyrics.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmLyrics.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmLyrics.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmLyrics.vb [Design]",
+              "RelativeToolTip": "PlayTray\\frmLyrics.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-15T11:03:37.172Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmLyrics.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmLyrics.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmLyrics.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmLyrics.vb",
+              "RelativeToolTip": "PlayTray\\frmLyrics.vb",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAawFIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-15T11:03:42.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SelectedTracksDocument.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\SelectedTracksDocument.vb",
+              "RelativeDocumentMoniker": "PlayTray\\SelectedTracksDocument.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\SelectedTracksDocument.vb",
+              "RelativeToolTip": "PlayTray\\SelectedTracksDocument.vb",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAQwHUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-14T07:53:36.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "frmCover.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmCover.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmCover.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmCover.vb",
+              "RelativeToolTip": "PlayTray\\frmCover.vb",
+              "ViewState": "AgIAAO4AAAAAAAAAAAAAABcBAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-10T22:02:29.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "frmLevel.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmLevel.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmLevel.vb",
+              "ToolTip": "D:\\Develompent_Working_Folder\\02.VB\\PLAY TRAY\\PlayTray\\PlayTray\\frmLevel.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T06:16:14.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SettingsManager.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\SettingsManager.vb",
+              "RelativeDocumentMoniker": "PlayTray\\SettingsManager.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\SettingsManager.vb",
+              "RelativeToolTip": "PlayTray\\SettingsManager.vb",
+              "ViewState": "AgIAANgAAAAAAAAAAAAuwPkAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T09:06:39.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AssemblyInfo.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\My Project\\AssemblyInfo.vb",
+              "RelativeDocumentMoniker": "PlayTray\\My Project\\AssemblyInfo.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\My Project\\AssemblyInfo.vb",
+              "RelativeToolTip": "PlayTray\\My Project\\AssemblyInfo.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-11T12:02:40.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "modGlobals.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\modGlobals.vb",
+              "RelativeDocumentMoniker": "PlayTray\\modGlobals.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\modGlobals.vb",
+              "RelativeToolTip": "PlayTray\\modGlobals.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T08:32:37.49Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "frmEditJson.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmEditJson.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmEditJson.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmEditJson.vb",
+              "RelativeToolTip": "PlayTray\\frmEditJson.vb",
+              "ViewState": "AgIAALEAAAAAAAAAAAAYwM0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-14T17:03:59.61Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "frmEditJson.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmEditJson.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmEditJson.vb",
+              "ToolTip": "D:\\Develompent_Working_Folder\\02.VB\\PLAY TRAY\\PlayTray\\PlayTray\\frmEditJson.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-14T16:45:06.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "StationManager.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\StationManager.vb",
+              "RelativeDocumentMoniker": "PlayTray\\StationManager.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\StationManager.vb",
+              "RelativeToolTip": "PlayTray\\StationManager.vb",
+              "ViewState": "AgIAACsAAAAAAAAAAAAxwEcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T09:05:15.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "PlayTray",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\PlayTray.vbproj",
+              "RelativeDocumentMoniker": "PlayTray\\PlayTray.vbproj",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\PlayTray.vbproj",
+              "RelativeToolTip": "PlayTray\\PlayTray.vbproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-10-09T08:39:09.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "frmOpenPlaylist.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmOpenPlaylist.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmOpenPlaylist.vb",
+              "ToolTip": "D:\\Develompent_Working_Folder\\02.VB\\PLAY TRAY\\PlayTray\\PlayTray\\frmOpenPlaylist.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T05:40:21.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "modMain.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\modMain.vb",
+              "RelativeDocumentMoniker": "PlayTray\\modMain.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\modMain.vb",
+              "RelativeToolTip": "PlayTray\\modMain.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T09:08:20.376Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "frmCover.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmCover.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmCover.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmCover.vb [Design]",
+              "RelativeToolTip": "PlayTray\\frmCover.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-10T22:01:28.539Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "frmAbout.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmAbout.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmAbout.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmAbout.vb [Design]",
+              "RelativeToolTip": "PlayTray\\frmAbout.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T06:49:51.384Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "frmTips.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmTips.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmTips.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmTips.vb",
+              "RelativeToolTip": "PlayTray\\frmTips.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T18:29:04.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "frmTips.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmTips.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmTips.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\PlayTray\\PlayTray\\frmTips.vb [Design]",
+              "RelativeToolTip": "..\\..\\PlayTray\\PlayTray\\frmTips.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T06:35:38.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "HTTPServer.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\HTTPServer.vb",
+              "RelativeDocumentMoniker": "PlayTray\\HTTPServer.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\HTTPServer.vb",
+              "RelativeToolTip": "PlayTray\\HTTPServer.vb",
+              "ViewState": "AgIAABUBAAAAAAAAAAAAACcBAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-10T09:07:08.594Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "BroadcastService.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\BroadcastService.vb",
+              "RelativeDocumentMoniker": "PlayTray\\BroadcastService.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\BroadcastService.vb",
+              "RelativeToolTip": "PlayTray\\BroadcastService.vb",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAswIEAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-11T19:02:03.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "frmOpenLink.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmOpenLink.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmOpenLink.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmOpenLink.vb",
+              "RelativeToolTip": "PlayTray\\frmOpenLink.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T17:38:19.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "frmSplash.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSplash.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmSplash.vb",
+              "ToolTip": "D:\\Develompent_Working_Folder\\02.VB\\PLAY TRAY\\PlayTray\\PlayTray\\frmSplash.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-08T19:30:20.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "frmLevel.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmLevel.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmLevel.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmLevel.vb",
+              "RelativeToolTip": "PlayTray\\frmLevel.vb",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAwwAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T18:55:38.797Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "frmSplash.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSplash.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmSplash.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSplash.vb",
+              "RelativeToolTip": "PlayTray\\frmSplash.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-08T19:36:43.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "RegistryExporter.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\RegistryExporter.vb",
+              "RelativeDocumentMoniker": "PlayTray\\RegistryExporter.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\RegistryExporter.vb",
+              "RelativeToolTip": "PlayTray\\RegistryExporter.vb",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAIwA4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-10T05:48:13.361Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "frmAbout.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmAbout.Designer.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmAbout.Designer.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmAbout.Designer.vb",
+              "RelativeToolTip": "PlayTray\\frmAbout.Designer.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFwAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-11T12:02:47.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "frmOpenPlaylist.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmOpenPlaylist.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmOpenPlaylist.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmOpenPlaylist.vb",
+              "RelativeToolTip": "PlayTray\\frmOpenPlaylist.vb",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAqwFwAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-10T07:45:21.841Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "frmSettings.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSettings.Designer.vb",
+              "RelativeDocumentMoniker": "PlayTray\\frmSettings.Designer.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\frmSettings.Designer.vb",
+              "RelativeToolTip": "PlayTray\\frmSettings.Designer.vb",
+              "ViewState": "AgIAAJABAAAAAAAAAAAqwKcBAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-10T19:52:20.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "PlaylistParser.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\PlaylistParser.vb",
+              "RelativeDocumentMoniker": "PlayTray\\PlaylistParser.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\PlaylistParser.vb",
+              "RelativeToolTip": "PlayTray\\PlaylistParser.vb",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwEwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-10T07:43:19.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "TrackHistory.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\TrackHistory.vb",
+              "RelativeDocumentMoniker": "PlayTray\\TrackHistory.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\TrackHistory.vb",
+              "RelativeToolTip": "PlayTray\\TrackHistory.vb",
+              "ViewState": "AgIAADcAAAAAAAAAAAAqwFsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-10T06:32:40.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Station.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\Station.vb",
+              "RelativeDocumentMoniker": "PlayTray\\Station.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\Station.vb",
+              "RelativeToolTip": "PlayTray\\Station.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T08:33:04.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "StationManager.vb",
+              "DocumentMoniker": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\StationManager.vb",
+              "RelativeDocumentMoniker": "PlayTray\\StationManager.vb",
+              "ToolTip": "C:\\Users\\nikos.georgousis\\Desktop\\Play Tray\\PlayTray\\PlayTray\\StationManager.vb",
+              "RelativeToolTip": "PlayTray\\StationManager.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-09T08:55:31.686Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
