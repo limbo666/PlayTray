@@ -8,7 +8,7 @@
         Me.StartPosition = FormStartPosition.Manual
         Me.TopMost = True
         Me.ShowInTaskbar = False
-
+        lblVersion.Text = "Version " & Application.ProductVersion
         ' Create rounded corners
         CreateRoundedCorners()
 
@@ -29,7 +29,7 @@
 
     Private Sub CreateRoundedCorners()
         Try
-            Dim radius As Integer = 10
+            Dim radius As Integer = 15
             Dim path As New System.Drawing.Drawing2D.GraphicsPath()
             path.AddArc(0, 0, radius, radius, 180, 90)
             path.AddArc(Me.Width - radius, 0, radius, radius, 270, 90)

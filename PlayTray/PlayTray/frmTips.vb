@@ -44,7 +44,7 @@ Public Class frmTips
 
     Private Sub CreateRoundedCorners()
         Try
-            Dim radius As Integer = 10
+            Dim radius As Integer = 15
             Dim path As New System.Drawing.Drawing2D.GraphicsPath()
             path.AddArc(0, 0, radius, radius, 180, 90)
             path.AddArc(Me.Width - radius, 0, radius, radius, 270, 90)
@@ -205,7 +205,9 @@ Public Class frmTips
     Public Sub ShowCoverViewer()
         Try
             ' Get current track info
-            Dim trackTitle As String = lblStation.Text & " - " & lblTrack.Text
+            '   Dim trackTitle As String = lblStation.Text & " - " & lblTrack.Text
+
+            Dim trackTitle As String = lblTrack.Text
 
             ' Debug: Check if image exists
             If picAlbumArt.Image Is Nothing Then

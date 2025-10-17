@@ -22,7 +22,7 @@ Public Class frmAbout
                               "Icons and Visuals:" & vbCrLf &
 "• Program icon inspired by the Sony Xplod™ subwoofer design" & vbCrLf &
 "  Sony and Xplod are trademarks of Sony Corporation." & vbCrLf &
-                               "• System icons from Windows" & vbCrLf
+                               "• System icons from Windows and custom created" & vbCrLf
 
         lblCredits2.Text = "Third-Party Libraries:" & vbCrLf &
                                "• Audio decoding by BASS Audio Library by Un4seen Developments"
@@ -302,5 +302,9 @@ Public Class frmAbout
         Catch ex As Exception
             MessageBox.Show("Could not open website", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub lblDescription_Click(sender As Object, e As EventArgs) Handles lblDescription.Click
+
     End Sub
 End Class

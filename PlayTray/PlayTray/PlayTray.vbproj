@@ -166,6 +166,12 @@
     <Compile Include="frmSplash.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmStats.Designer.vb">
+      <DependentUpon>frmStats.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmStats.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTips.Designer.vb">
       <DependentUpon>frmTips.vb</DependentUpon>
     </Compile>
@@ -231,6 +237,9 @@
     <EmbeddedResource Include="frmSplash.resx">
       <DependentUpon>frmSplash.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmStats.resx">
+      <DependentUpon>frmStats.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTips.resx">
       <DependentUpon>frmTips.vb</DependentUpon>
     </EmbeddedResource>
@@ -284,16 +293,19 @@
     <Content Include="Images\mnu7.png" />
     <Content Include="Images\mnu8.png" />
     <Content Include="Images\mnu9.png" />
+    <Content Include="Images\mnueditfavorites.png" />
     <Content Include="Images\mnufavorites.png" />
     <Content Include="Images\mnuinfo.png" />
     <Content Include="Images\mnulink.png" />
     <Content Include="Images\mnuopen.png" />
     <Content Include="Images\mnuplay.png" />
     <Content Include="Images\mnuplaylist.png" />
+    <None Include="Images\mnusettings.png" />
     <Content Include="Images\mnuslider.png" />
     <Content Include="Images\mnustop.png" />
     <Content Include="Images\mnutool1.png" />
     <Content Include="Images\mnuwoofer.png" />
+    <None Include="Images\mnuyoutube.png" />
     <Content Include="Images\NoSound.png" />
     <Content Include="Icons\old.playwoofer2.ico" />
     <Content Include="Icons\old.stopwoofer2.ico" />

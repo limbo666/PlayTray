@@ -36,7 +36,7 @@ Partial Class frmSplash
         Me.lblAppName.AutoSize = True
         Me.lblAppName.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.lblAppName.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.lblAppName.Location = New System.Drawing.Point(36, 128)
+        Me.lblAppName.Location = New System.Drawing.Point(36, 129)
         Me.lblAppName.Name = "lblAppName"
         Me.lblAppName.Size = New System.Drawing.Size(112, 25)
         Me.lblAppName.TabIndex = 0
@@ -47,11 +47,11 @@ Partial Class frmSplash
         Me.lblVersion.AutoSize = True
         Me.lblVersion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.lblVersion.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.lblVersion.Location = New System.Drawing.Point(52, 157)
+        Me.lblVersion.Location = New System.Drawing.Point(43, 158)
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(73, 16)
+        Me.lblVersion.Size = New System.Drawing.Size(93, 16)
         Me.lblVersion.TabIndex = 1
-        Me.lblVersion.Text = "Version 1.0"
+        Me.lblVersion.Text = "Version 1.0.0.2"
         '
         'picLogo
         '

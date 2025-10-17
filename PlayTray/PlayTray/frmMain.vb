@@ -22,6 +22,8 @@ Public Class frmMain
     ' Tips window
     Private tipsForm As frmTips
 
+    ' Stats window
+    Private statsForm As frmStats
 
     ' Volume form
     Private levelForm As frmLevel
@@ -441,7 +443,34 @@ Public Class frmMain
                     Else
                         menuItem.Text = "📻 " & station.Name
                     End If
+                    Select Case i
+                        Case 0
+                            menuItem.Image = My.Resources.mnu1
+                        Case 1
+                            menuItem.Image = My.Resources.mnu2
+                        Case 2
+                            menuItem.Image = My.Resources.mnu3
+                        Case 3
+                            menuItem.Image = My.Resources.mnu4
+                        Case 4
+                            menuItem.Image = My.Resources.mnu5
+                        Case 5
+                            menuItem.Image = My.Resources.mnu6
 
+                        Case 6
+                            menuItem.Image = My.Resources.mnu7
+                        Case 7
+                            menuItem.Image = My.Resources.mnu8
+                        Case 8
+                            menuItem.Image = My.Resources.mnu9
+
+                        Case 9
+                            menuItem.Image = My.Resources.mnu10
+
+
+
+
+                    End Select
                     menuItem.Tag = station
 
                     AddHandler menuItem.Click, AddressOf FavoriteStation_Click
@@ -463,6 +492,7 @@ Public Class frmMain
 
             Dim menuItemSteady As New ToolStripMenuItem()
             menuItemSteady.Text = "Edit favorites"
+            menuItemSteady.Image = My.Resources.mnueditfavorites
             favMenuItem.DropDownItems.Add(menuItemSteady)
             AddHandler menuItemSteady.Click, AddressOf EditFavoritesMenu
 
@@ -1037,10 +1067,17 @@ Public Class frmMain
             If g_TrackHistory Is Nothing Then Return
 
             Dim stationName As String = If(g_CurrentStation IsNot Nothing, g_CurrentStation.Name, "Unknown")
-            g_TrackHistory.SaveBeloved(stationName, g_CurrentTrackInfo)
+            Dim result As BelovedSaveResult = g_TrackHistory.SaveBeloved(stationName, g_CurrentTrackInfo)
+
+            ' Show result via tips window (like timed mute)
+            If result.Success Then
+                ShowTipsWindow("Beloved Track", result.Message, "✓ Saved", True)
+            Else
+                ShowTipsWindow("Beloved Track", result.Message, "Not Saved", True)
+            End If
 
         Catch ex As Exception
-            MessageBox.Show("Error saving beloved track: " & ex.Message, "Error")
+            ShowTipsWindow("Beloved Track", "Error saving track", "Failed", True)
         End Try
     End Sub
 
@@ -1393,15 +1430,109 @@ Public Class frmMain
 
     Private Sub niTray_MouseClick(sender As Object, e As MouseEventArgs) Handles niTray.MouseClick
         If e.Button = MouseButtons.Left Then
-            ResetStopTime() ' Reset timer
-            If g_IsPlaying Then
-                StopPlayback()
+            ' Check for Ctrl+LeftClick
+            If Control.ModifierKeys = Keys.Control Then
+                ' Show stats
+                ShowStatsWindow()
             Else
-                ResumePlayback()  ' CHANGED from PlayTestStream()
+                ' Normal left click - toggle playback
+                ResetStopTime() ' Reset timer
+                If g_IsPlaying Then
+                    StopPlayback()
+                Else
+                    ResumePlayback()
+                End If
             End If
         End If
     End Sub
 
+    Public Sub ShowStatsWindow()
+        Try
+            ' Get current stream stats
+            Dim stationName As String = "No Station"
+            Dim bitrate As Integer = 0
+            Dim codec As String = "Unknown"
+
+            If g_CurrentStation IsNot Nothing Then
+                stationName = g_CurrentStation.Name
+            End If
+
+            If g_StreamHandle <> 0 AndAlso g_IsPlaying Then
+                ' Get bitrate and codec
+                GetStreamStats(bitrate, codec)
+            Else
+                codec = "Not Playing"
+            End If
+
+            ' Create stats form if needed
+            If statsForm Is Nothing OrElse statsForm.IsDisposed Then
+                statsForm = New frmStats()
+            End If
+
+            ' Show stats
+            statsForm.ShowStats(stationName, bitrate, codec)
+
+        Catch ex As Exception
+            ' Silent fail
+        End Try
+    End Sub
+    Private Sub GetStreamStats(ByRef bitrate As Integer, ByRef codec As String)
+        Try
+            If g_StreamHandle = 0 Then
+                bitrate = 0
+                codec = "Unknown"
+                Return
+            End If
+
+            ' Get channel info
+            Dim info As BASS_CHANNELINFO = New BASS_CHANNELINFO()
+            If Bass.BASS_ChannelGetInfo(g_StreamHandle, info) Then
+                ' Decode codec from ctype
+                codec = GetCodecName(info.ctype)
+
+                ' Get bitrate (in kbps)
+                Dim bitrateValue As Single = 0
+                If Bass.BASS_ChannelGetAttribute(g_StreamHandle, BASSAttribute.BASS_ATTRIB_BITRATE, bitrateValue) Then
+                    bitrate = CInt(Math.Round(bitrateValue))
+                Else
+                    ' Fallback: estimate from channel info
+                    bitrate = 128 ' Default estimate
+                End If
+            Else
+                bitrate = 0
+                codec = "Unknown"
+            End If
+
+        Catch ex As Exception
+            bitrate = 0
+            codec = "Error"
+        End Try
+    End Sub
+
+    Private Function GetCodecName(channelType As BASSChannelType) As String
+        Try
+            ' Get string representation
+            Dim typeString As String = channelType.ToString()
+
+            ' Parse common types
+            If typeString.Contains("MP3") Then
+                Return "MP3"
+            ElseIf typeString.Contains("AAC") Then
+                Return "AAC"
+            ElseIf typeString.Contains("FLAC") Then
+                Return "FLAC"
+            ElseIf typeString.Contains("OGG") Then
+                Return "OGG"
+            ElseIf typeString.Contains("WAV") Then
+                Return "WAV"
+            Else
+                Return "Stream"
+            End If
+
+        Catch ex As Exception
+            Return "Unknown"
+        End Try
+    End Function
     ' ============================================
     ' PLAYBACK METHODS (Basic - Phase 2)
     ' ============================================

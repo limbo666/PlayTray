@@ -95,7 +95,7 @@ Partial Class frmAbout
         'lnkDocumentation
         '
         Me.lnkDocumentation.AutoSize = True
-        Me.lnkDocumentation.Location = New System.Drawing.Point(131, 550)
+        Me.lnkDocumentation.Location = New System.Drawing.Point(237, 550)
         Me.lnkDocumentation.Name = "lnkDocumentation"
         Me.lnkDocumentation.Size = New System.Drawing.Size(89, 13)
         Me.lnkDocumentation.TabIndex = 5
@@ -104,7 +104,7 @@ Partial Class frmAbout
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(293, 540)
+        Me.btnClose.Location = New System.Drawing.Point(382, 536)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 33)
         Me.btnClose.TabIndex = 6
@@ -116,7 +116,7 @@ Partial Class frmAbout
         Me.lblDescription.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.lblDescription.Location = New System.Drawing.Point(6, 12)
         Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(337, 45)
+        Me.lblDescription.Size = New System.Drawing.Size(430, 45)
         Me.lblDescription.TabIndex = 7
         Me.lblDescription.Text = "Network player"
         '
@@ -133,7 +133,7 @@ Partial Class frmAbout
         'lnkLicense
         '
         Me.lnkLicense.AutoSize = True
-        Me.lnkLicense.Location = New System.Drawing.Point(226, 550)
+        Me.lnkLicense.Location = New System.Drawing.Point(332, 550)
         Me.lnkLicense.Name = "lnkLicense"
         Me.lnkLicense.Size = New System.Drawing.Size(44, 13)
         Me.lnkLicense.TabIndex = 10
@@ -142,7 +142,7 @@ Partial Class frmAbout
         '
         'btnCredits
         '
-        Me.btnCredits.Location = New System.Drawing.Point(291, 43)
+        Me.btnCredits.Location = New System.Drawing.Point(382, 43)
         Me.btnCredits.Name = "btnCredits"
         Me.btnCredits.Size = New System.Drawing.Size(75, 33)
         Me.btnCredits.TabIndex = 11
@@ -152,7 +152,7 @@ Partial Class frmAbout
         '
         'btnCopyInfo
         '
-        Me.btnCopyInfo.Location = New System.Drawing.Point(291, 12)
+        Me.btnCopyInfo.Location = New System.Drawing.Point(382, 9)
         Me.btnCopyInfo.Name = "btnCopyInfo"
         Me.btnCopyInfo.Size = New System.Drawing.Size(75, 33)
         Me.btnCopyInfo.TabIndex = 12
@@ -192,7 +192,7 @@ Partial Class frmAbout
         '
         Me.lblCredits0.Location = New System.Drawing.Point(6, 51)
         Me.lblCredits0.Name = "lblCredits0"
-        Me.lblCredits0.Size = New System.Drawing.Size(337, 22)
+        Me.lblCredits0.Size = New System.Drawing.Size(430, 22)
         Me.lblCredits0.TabIndex = 16
         Me.lblCredits0.Text = "Remake"
         '
@@ -205,7 +205,7 @@ Partial Class frmAbout
         Me.GroupBox1.Controls.Add(Me.lnkBass)
         Me.GroupBox1.Location = New System.Drawing.Point(17, 158)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(349, 217)
+        Me.GroupBox1.Size = New System.Drawing.Size(440, 217)
         Me.GroupBox1.TabIndex = 17
         Me.GroupBox1.TabStop = False
         '
@@ -236,7 +236,7 @@ Partial Class frmAbout
         Me.TabControl1.Location = New System.Drawing.Point(17, 381)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(349, 153)
+        Me.TabControl1.Size = New System.Drawing.Size(440, 153)
         Me.TabControl1.TabIndex = 18
         '
         'TabPage1
@@ -245,7 +245,7 @@ Partial Class frmAbout
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(341, 124)
+        Me.TabPage1.Size = New System.Drawing.Size(432, 124)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Shortcuts"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -257,7 +257,7 @@ Partial Class frmAbout
         Me.txtShortcuts.Name = "txtShortcuts"
         Me.txtShortcuts.ReadOnly = True
         Me.txtShortcuts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtShortcuts.Size = New System.Drawing.Size(343, 126)
+        Me.txtShortcuts.Size = New System.Drawing.Size(438, 126)
         Me.txtShortcuts.TabIndex = 9
         '
         'TabPage2
@@ -266,7 +266,7 @@ Partial Class frmAbout
         Me.TabPage2.Location = New System.Drawing.Point(4, 25)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(341, 124)
+        Me.TabPage2.Size = New System.Drawing.Size(432, 124)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "System Info"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -286,7 +286,7 @@ Partial Class frmAbout
         Me.GroupBox2.Controls.Add(Me.lblDescription)
         Me.GroupBox2.Location = New System.Drawing.Point(17, 82)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(349, 78)
+        Me.GroupBox2.Size = New System.Drawing.Size(440, 78)
         Me.GroupBox2.TabIndex = 19
         Me.GroupBox2.TabStop = False
         '
@@ -294,7 +294,7 @@ Partial Class frmAbout
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(385, 595)
+        Me.ClientSize = New System.Drawing.Size(470, 595)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.lblCopyright)
         Me.Controls.Add(Me.TabControl1)

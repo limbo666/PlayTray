@@ -579,7 +579,7 @@ Public Class HTTPServer
 
     Private Function GetApiInfo() As String
         Return CreateJsonResponse(True, "PlayTray API Server", New Dictionary(Of String, Object) From {
-            {"version", "1.0"},
+            {"version", APP_VERSION},
             {"endpoints", New String() {
                 "/status - Get current playback status",
                 "/play - Start playback",

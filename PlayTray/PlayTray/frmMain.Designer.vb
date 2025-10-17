@@ -41,12 +41,12 @@ Partial Class frmMain
         Me.tsmiFavorites = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiSettings = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiLevel = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiShowLyrics = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsmiAbout = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.niTray = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.tmrFlashIcon = New System.Windows.Forms.Timer(Me.components)
-        Me.tsmiShowLyrics = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmsMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -57,99 +57,118 @@ Partial Class frmMain
         '
         Me.cmsMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiStationInfo, Me.tsmiSeparator1, Me.tsmiPlay, Me.tsmiStop, Me.tsmiSeparator2, Me.tsmiOpen, Me.tsmiSeparator3, Me.tsmiFavorites, Me.tsmiSettings, Me.tsmiLevel, Me.tsmiShowLyrics, Me.tsmiSeparator4, Me.tsmiAbout, Me.tsmiExit})
         Me.cmsMain.Name = "cmsMain"
-        Me.cmsMain.Size = New System.Drawing.Size(181, 270)
+        Me.cmsMain.Size = New System.Drawing.Size(160, 248)
         '
         'tsmiStationInfo
         '
+        Me.tsmiStationInfo.Image = Global.PlayTray.My.Resources.Resources.mnu
         Me.tsmiStationInfo.Name = "tsmiStationInfo"
-        Me.tsmiStationInfo.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiStationInfo.Size = New System.Drawing.Size(159, 22)
         Me.tsmiStationInfo.Text = "Station name"
         '
         'tsmiSeparator1
         '
         Me.tsmiSeparator1.Name = "tsmiSeparator1"
-        Me.tsmiSeparator1.Size = New System.Drawing.Size(177, 6)
+        Me.tsmiSeparator1.Size = New System.Drawing.Size(156, 6)
         '
         'tsmiPlay
         '
+        Me.tsmiPlay.Image = Global.PlayTray.My.Resources.Resources.mnuplay
         Me.tsmiPlay.Name = "tsmiPlay"
-        Me.tsmiPlay.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiPlay.Size = New System.Drawing.Size(159, 22)
         Me.tsmiPlay.Text = "Play"
         '
         'tsmiStop
         '
+        Me.tsmiStop.Image = Global.PlayTray.My.Resources.Resources.mnustop
         Me.tsmiStop.Name = "tsmiStop"
-        Me.tsmiStop.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiStop.Size = New System.Drawing.Size(159, 22)
         Me.tsmiStop.Text = "Stop"
         '
         'tsmiSeparator2
         '
         Me.tsmiSeparator2.Name = "tsmiSeparator2"
-        Me.tsmiSeparator2.Size = New System.Drawing.Size(177, 6)
+        Me.tsmiSeparator2.Size = New System.Drawing.Size(156, 6)
         '
         'tsmiOpen
         '
         Me.tsmiOpen.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiOpenLink, Me.tsmiOpenPlaylist, Me.tsmiOpenYouTube})
+        Me.tsmiOpen.Image = Global.PlayTray.My.Resources.Resources.mnuopen
         Me.tsmiOpen.Name = "tsmiOpen"
-        Me.tsmiOpen.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiOpen.Size = New System.Drawing.Size(159, 22)
         Me.tsmiOpen.Text = "Open"
         '
         'tsmiOpenLink
         '
+        Me.tsmiOpenLink.Image = Global.PlayTray.My.Resources.Resources.mnulink
         Me.tsmiOpenLink.Name = "tsmiOpenLink"
-        Me.tsmiOpenLink.Size = New System.Drawing.Size(162, 22)
+        Me.tsmiOpenLink.Size = New System.Drawing.Size(180, 22)
         Me.tsmiOpenLink.Text = "Open Link..."
         '
         'tsmiOpenPlaylist
         '
+        Me.tsmiOpenPlaylist.Image = Global.PlayTray.My.Resources.Resources.mnuplaylist
         Me.tsmiOpenPlaylist.Name = "tsmiOpenPlaylist"
-        Me.tsmiOpenPlaylist.Size = New System.Drawing.Size(162, 22)
+        Me.tsmiOpenPlaylist.Size = New System.Drawing.Size(180, 22)
         Me.tsmiOpenPlaylist.Text = "Open Playlist..."
         '
         'tsmiOpenYouTube
         '
+        Me.tsmiOpenYouTube.Image = Global.PlayTray.My.Resources.Resources.mnuyoutube
         Me.tsmiOpenYouTube.Name = "tsmiOpenYouTube"
-        Me.tsmiOpenYouTube.Size = New System.Drawing.Size(162, 22)
+        Me.tsmiOpenYouTube.Size = New System.Drawing.Size(180, 22)
         Me.tsmiOpenYouTube.Text = "Open YouTube..."
         '
         'tsmiSeparator3
         '
         Me.tsmiSeparator3.Name = "tsmiSeparator3"
-        Me.tsmiSeparator3.Size = New System.Drawing.Size(177, 6)
+        Me.tsmiSeparator3.Size = New System.Drawing.Size(156, 6)
         '
         'tsmiFavorites
         '
+        Me.tsmiFavorites.Image = Global.PlayTray.My.Resources.Resources.mnufavorites
         Me.tsmiFavorites.Name = "tsmiFavorites"
-        Me.tsmiFavorites.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiFavorites.Size = New System.Drawing.Size(159, 22)
         Me.tsmiFavorites.Text = "Favorites"
         '
         'tsmiSettings
         '
+        Me.tsmiSettings.Image = Global.PlayTray.My.Resources.Resources.mnusettings
         Me.tsmiSettings.Name = "tsmiSettings"
-        Me.tsmiSettings.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiSettings.Size = New System.Drawing.Size(159, 22)
         Me.tsmiSettings.Text = "Settings..."
         '
         'tsmiLevel
         '
+        Me.tsmiLevel.Image = Global.PlayTray.My.Resources.Resources.mnuslider
         Me.tsmiLevel.Name = "tsmiLevel"
-        Me.tsmiLevel.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiLevel.Size = New System.Drawing.Size(159, 22)
         Me.tsmiLevel.Text = "Level..."
+        '
+        'tsmiShowLyrics
+        '
+        Me.tsmiShowLyrics.Name = "tsmiShowLyrics"
+        Me.tsmiShowLyrics.Size = New System.Drawing.Size(159, 22)
+        Me.tsmiShowLyrics.Text = "🎤 Show Lyrics..."
+        Me.tsmiShowLyrics.Visible = False
         '
         'tsmiSeparator4
         '
         Me.tsmiSeparator4.Name = "tsmiSeparator4"
-        Me.tsmiSeparator4.Size = New System.Drawing.Size(177, 6)
+        Me.tsmiSeparator4.Size = New System.Drawing.Size(156, 6)
         '
         'tsmiAbout
         '
+        Me.tsmiAbout.Image = Global.PlayTray.My.Resources.Resources.mnuinfo
         Me.tsmiAbout.Name = "tsmiAbout"
-        Me.tsmiAbout.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiAbout.Size = New System.Drawing.Size(159, 22)
         Me.tsmiAbout.Text = "About..."
         '
         'tsmiExit
         '
+        Me.tsmiExit.Image = Global.PlayTray.My.Resources.Resources.x
         Me.tsmiExit.Name = "tsmiExit"
-        Me.tsmiExit.Size = New System.Drawing.Size(180, 22)
+        Me.tsmiExit.Size = New System.Drawing.Size(159, 22)
         Me.tsmiExit.Text = "Exit"
         '
         'niTray
@@ -160,13 +179,6 @@ Partial Class frmMain
         '
         'tmrFlashIcon
         '
-        '
-        'tsmiShowLyrics
-        '
-        Me.tsmiShowLyrics.Name = "tsmiShowLyrics"
-        Me.tsmiShowLyrics.Size = New System.Drawing.Size(180, 22)
-        Me.tsmiShowLyrics.Text = "🎤 Show Lyrics..."
-        Me.tsmiShowLyrics.Visible = False
         '
         'frmMain
         '

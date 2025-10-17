@@ -55,38 +55,59 @@ Public Class TrackHistory
         End Try
     End Sub
 
-    Public Sub SaveBeloved(stationName As String, trackInfo As String)
+    ''' <summary>
+    ''' Save track to beloved list. Returns result for UI handling.
+    ''' </summary>
+    Public Function SaveBeloved(stationName As String, trackInfo As String) As BelovedSaveResult
         Try
+            ' Validate track info
             If String.IsNullOrWhiteSpace(trackInfo) Then
-                ' No track playing, inform user
-                MessageBox.Show("No track is currently playing.", "Save Beloved", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Return
+                Return New BelovedSaveResult With {
+                .Success = False,
+                .Message = "No track is currently playing"
+            }
             End If
 
             If trackInfo.Equals("Connecting...", StringComparison.OrdinalIgnoreCase) Then
-                MessageBox.Show("Still connecting to stream.", "Save Beloved", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Return
+                Return New BelovedSaveResult With {
+                .Success = False,
+                .Message = "Still connecting to stream"
+            }
             End If
 
+            ' Save to file
             Dim now As DateTime = DateTime.Now
             Dim timestamp As String = now.ToString("yyyy-MM-dd HH:mm:ss")
-
-            ' Format: DateTime | Station | Track
             Dim logEntry As String = timestamp & vbTab & stationName & vbTab & trackInfo
 
-            ' Append to beloved file
             File.AppendAllText(belovedFilePath, logEntry & Environment.NewLine)
 
-            ' Show confirmation (brief)
-            MessageBox.Show("Saved to Beloved!" & vbCrLf & trackInfo, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' Return success
+            Return New BelovedSaveResult With {
+            .Success = True,
+            .Message = trackInfo,
+            .stationName = stationName
+        }
 
         Catch ex As Exception
-            MessageBox.Show("Error saving beloved track: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return New BelovedSaveResult With {
+            .Success = False,
+            .Message = "Error: " & ex.Message
+        }
         End Try
-    End Sub
-
+    End Function
     Public Sub ResetStationTracking()
         ' Reset tracking when manually changing stations
         lastStation = ""
     End Sub
+End Class
+
+
+''' <summary>
+''' Result object for beloved save operation
+''' </summary>
+Public Class BelovedSaveResult
+    Public Property Success As Boolean
+    Public Property Message As String
+    Public Property StationName As String
 End Class

@@ -248,16 +248,16 @@ Public Class frmCover
             htmlDoc.AppendTrack(currentImagePath, currentTrackTitle)
 
             ' Success - ask to open
-            Dim result = MessageBox.Show(
-                "Track saved to Selected_Tracks.html!" & vbCrLf & vbCrLf &
-                "Open document?",
-                "Saved",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Information)
+            'Dim result = MessageBox.Show(
+            '    "Track saved to Selected_Tracks.html!" & vbCrLf & vbCrLf &
+            '    "Open document?",
+            '    "Saved",
+            '    MessageBoxButtons.YesNo,
+            '    MessageBoxIcon.Information)
 
-            If result = DialogResult.Yes Then
-                htmlDoc.OpenDocument()
-            End If
+            'If result = DialogResult.Yes Then
+            '    htmlDoc.OpenDocument()
+            'End If
 
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

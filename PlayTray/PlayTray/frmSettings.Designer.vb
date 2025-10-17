@@ -55,6 +55,10 @@ Partial Class frmSettings
         Me.numServerPort = New System.Windows.Forms.NumericUpDown()
         Me.chkEnableServer = New System.Windows.Forms.CheckBox()
         Me.Tab4 = New System.Windows.Forms.TabPage()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.lnkGetMusixMatchToken = New System.Windows.Forms.LinkLabel()
+        Me.txtMusixMatchToken = New System.Windows.Forms.TextBox()
+        Me.lblMusixMatch = New System.Windows.Forms.Label()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.btnValidate = New System.Windows.Forms.Button()
         Me.lnkGetToken = New System.Windows.Forms.LinkLabel()
@@ -76,10 +80,6 @@ Partial Class frmSettings
         Me.btnOK = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnApply = New System.Windows.Forms.Button()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.lnkGetMusixMatchToken = New System.Windows.Forms.LinkLabel()
-        Me.txtMusixMatchToken = New System.Windows.Forms.TextBox()
-        Me.lblMusixMatch = New System.Windows.Forms.Label()
         Me.tcSettings.SuspendLayout()
         Me.Tab1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -90,6 +90,7 @@ Partial Class frmSettings
         Me.GroupBox6.SuspendLayout()
         CType(Me.numServerPort, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Tab4.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.numAutoCloseMinutes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +98,6 @@ Partial Class frmSettings
         CType(Me.numMuteLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numTimedMuteSeconds, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox9.SuspendLayout()
         Me.SuspendLayout()
         '
         'tcSettings
@@ -443,6 +443,45 @@ Partial Class frmSettings
         Me.Tab4.Text = "Advanced"
         Me.Tab4.UseVisualStyleBackColor = True
         '
+        'GroupBox9
+        '
+        Me.GroupBox9.Controls.Add(Me.lnkGetMusixMatchToken)
+        Me.GroupBox9.Controls.Add(Me.txtMusixMatchToken)
+        Me.GroupBox9.Controls.Add(Me.lblMusixMatch)
+        Me.GroupBox9.Location = New System.Drawing.Point(22, 244)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(588, 69)
+        Me.GroupBox9.TabIndex = 13
+        Me.GroupBox9.TabStop = False
+        Me.GroupBox9.Text = "Lyrics"
+        Me.GroupBox9.Visible = False
+        '
+        'lnkGetMusixMatchToken
+        '
+        Me.lnkGetMusixMatchToken.AutoSize = True
+        Me.lnkGetMusixMatchToken.Location = New System.Drawing.Point(465, 42)
+        Me.lnkGetMusixMatchToken.Name = "lnkGetMusixMatchToken"
+        Me.lnkGetMusixMatchToken.Size = New System.Drawing.Size(109, 13)
+        Me.lnkGetMusixMatchToken.TabIndex = 6
+        Me.lnkGetMusixMatchToken.TabStop = True
+        Me.lnkGetMusixMatchToken.Text = "Get your free API Key"
+        '
+        'txtMusixMatchToken
+        '
+        Me.txtMusixMatchToken.Location = New System.Drawing.Point(333, 17)
+        Me.txtMusixMatchToken.Name = "txtMusixMatchToken"
+        Me.txtMusixMatchToken.Size = New System.Drawing.Size(241, 20)
+        Me.txtMusixMatchToken.TabIndex = 5
+        '
+        'lblMusixMatch
+        '
+        Me.lblMusixMatch.AutoSize = True
+        Me.lblMusixMatch.Location = New System.Drawing.Point(182, 20)
+        Me.lblMusixMatch.Name = "lblMusixMatch"
+        Me.lblMusixMatch.Size = New System.Drawing.Size(145, 13)
+        Me.lblMusixMatch.TabIndex = 4
+        Me.lblMusixMatch.Text = "Enter your MusixMatch token"
+        '
         'GroupBox7
         '
         Me.GroupBox7.Controls.Add(Me.btnValidate)
@@ -646,44 +685,6 @@ Partial Class frmSettings
         Me.btnApply.Text = "Apply"
         Me.btnApply.UseVisualStyleBackColor = True
         '
-        'GroupBox9
-        '
-        Me.GroupBox9.Controls.Add(Me.lnkGetMusixMatchToken)
-        Me.GroupBox9.Controls.Add(Me.txtMusixMatchToken)
-        Me.GroupBox9.Controls.Add(Me.lblMusixMatch)
-        Me.GroupBox9.Location = New System.Drawing.Point(22, 244)
-        Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(588, 69)
-        Me.GroupBox9.TabIndex = 13
-        Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "Lyrics"
-        '
-        'lnkGetMusixMatchToken
-        '
-        Me.lnkGetMusixMatchToken.AutoSize = True
-        Me.lnkGetMusixMatchToken.Location = New System.Drawing.Point(465, 42)
-        Me.lnkGetMusixMatchToken.Name = "lnkGetMusixMatchToken"
-        Me.lnkGetMusixMatchToken.Size = New System.Drawing.Size(109, 13)
-        Me.lnkGetMusixMatchToken.TabIndex = 6
-        Me.lnkGetMusixMatchToken.TabStop = True
-        Me.lnkGetMusixMatchToken.Text = "Get your free API Key"
-        '
-        'txtMusixMatchToken
-        '
-        Me.txtMusixMatchToken.Location = New System.Drawing.Point(333, 17)
-        Me.txtMusixMatchToken.Name = "txtMusixMatchToken"
-        Me.txtMusixMatchToken.Size = New System.Drawing.Size(241, 20)
-        Me.txtMusixMatchToken.TabIndex = 5
-        '
-        'lblMusixMatch
-        '
-        Me.lblMusixMatch.AutoSize = True
-        Me.lblMusixMatch.Location = New System.Drawing.Point(182, 20)
-        Me.lblMusixMatch.Name = "lblMusixMatch"
-        Me.lblMusixMatch.Size = New System.Drawing.Size(145, 13)
-        Me.lblMusixMatch.TabIndex = 4
-        Me.lblMusixMatch.Text = "Enter your MusixMatch token"
-        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -716,6 +717,8 @@ Partial Class frmSettings
         Me.GroupBox6.PerformLayout()
         CType(Me.numServerPort, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Tab4.ResumeLayout(False)
+        Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
@@ -727,8 +730,6 @@ Partial Class frmSettings
         CType(Me.numTimedMuteSeconds, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox9.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
