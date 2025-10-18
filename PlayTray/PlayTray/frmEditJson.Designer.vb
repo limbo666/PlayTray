@@ -196,7 +196,7 @@ Partial Class frmEditJson
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 32)
         Me.btnCancel.TabIndex = 18
-        Me.btnCancel.Text = "OK"
+        Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnApply

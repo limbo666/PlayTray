@@ -1,5 +1,5 @@
 === Play Tray - Registered Hotkeys ===
-Generated: 17/10/2025 11:31:27 μμ
+Generated: 18/10/2025 12:26:42 μμ
 
 --- Basic Controls ---
 Ctrl+Alt+Shift+P          → Play

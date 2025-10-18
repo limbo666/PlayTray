@@ -2,33 +2,78 @@
   "stations": [
     {
       "Position": 1,
-      "Name": "Zeppelin",
+      "Name": "Zeppelin ERT",
       "Link": "https://radiostreaming.ert.gr/ert-zeppelin",
       "Remarks": "Greek rock radio",
       "FiltersList": [],
-      "DateAdded": "2025-10-17T22:15:31.3278459+03:00",
+      "DateAdded": "2025-10-14T21:49:21.451923+03:00",
       "StationInfoLink": "",
       "StationWebAddress": "https://www.ert.gr/"
     },
     {
       "Position": 2,
-      "Name": "Radio Paradise AAC",
-      "Link": "http://stream.radioparadise.com/aac-128",
+      "Name": "Radio Paradise  💌",
+      "Link": "http://stream.radioparadise.com/flacm",
       "Remarks": "Eclectic music",
       "FiltersList": [],
-      "DateAdded": "2025-10-17T22:15:31.3278459+03:00",
+      "DateAdded": "2025-10-14T21:49:21.451923+03:00",
       "StationInfoLink": "",
       "StationWebAddress": "https://radioparadise.com/"
     },
     {
       "Position": 3,
-      "Name": "0N Indie",
-      "Link": "https://0n-indie.radionetz.de/0n-indie.mp3",
-      "Remarks": "Indie music",
+      "Name": "Best",
+      "Link": "http://best.live24.gr:80/best1222",
+      "Remarks": "Best Best",
       "FiltersList": [],
-      "DateAdded": "2025-10-17T22:15:31.3278459+03:00",
+      "DateAdded": "2025-10-14T21:49:21.451923+03:00",
       "StationInfoLink": "",
-      "StationWebAddress": "https://www.0nlineradio.com/"
+      "StationWebAddress": "https://www.atticaradios.gr/best926/"
+    },
+    {
+      "Position": 4,
+      "Name": "Velvet",
+      "Link": "http://ice.onestreaming.com/velvetfm",
+      "Remarks": "Athers Party Radio",
+      "FiltersList": [],
+      "DateAdded": "2025-10-14T21:49:21.451923+03:00",
+      "StationInfoLink": "",
+      "StationWebAddress": "https://www.athensparty.com/velvetfm/player"
+    },
+    {
+      "Position": 5,
+      "Name": "Indie XL",
+      "Link": "http://server-23.stream-server.nl:8438/stream/1/",
+      "Remarks": "From https://www.internet-radio.com/stations/indie/",
+      "FiltersList": [],
+      "DateAdded": "2025-10-14T21:49:21.451923+03:00",
+      "StationInfoLink": "",
+      "StationWebAddress": "http://www.indiexl.nl"
+    },
+    {
+      "Position": 9,
+      "Name": "Athens Voice",
+      "Link": "http://nitro.live24.gr//nitro4555",
+      "Remarks": "Athens voice radio",
+      "FiltersList": [
+        {
+          "Find": "as",
+          "Replace": "67"
+        }
+      ],
+      "DateAdded": "2025-10-14T21:49:21.451923+03:00",
+      "StationInfoLink": "",
+      "StationWebAddress": "https://www.voice1025.gr/"
+    },
+    {
+      "Position": 10,
+      "Name": "Lite Radio",
+      "Link": "https://ais-sa2.cdnstream1.com/2382_128.mp3",
+      "Remarks": "",
+      "FiltersList": [],
+      "DateAdded": "2025-10-14T21:49:21.451923+03:00",
+      "StationInfoLink": "",
+      "StationWebAddress": ""
     }
   ]
 }

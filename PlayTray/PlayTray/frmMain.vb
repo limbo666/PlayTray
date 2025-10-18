@@ -436,41 +436,37 @@ Public Class frmMain
 
                     Dim menuItem As New ToolStripMenuItem()
                     Dim keyNum As Integer = If(station.Position = 10, 0, station.Position)
+                    Select Case station.Position
+                        Case 1
+                            menuItem.Image = My.Resources.mnu1
+                        Case 2
+                            menuItem.Image = My.Resources.mnu2
+                        Case 3
+                            menuItem.Image = My.Resources.mnu3
+                        Case 4
+                            menuItem.Image = My.Resources.mnu4
+                        Case 5
+                            menuItem.Image = My.Resources.mnu5
+                        Case 6
+                            menuItem.Image = My.Resources.mnu6
+                        Case 7
+                            menuItem.Image = My.Resources.mnu7
+                        Case 8
+                            menuItem.Image = My.Resources.mnu8
+                        Case 9
+                            menuItem.Image = My.Resources.mnu9
 
+                        Case 10
+                            menuItem.Image = My.Resources.mnu10
+
+                    End Select
                     ' Show hotkey only if not disabled
                     If showHotkeys Then
                         menuItem.Text = "📻 " & station.Name & " (" & modifierString & "+" & keyNum.ToString() & ")"
                     Else
                         menuItem.Text = "📻 " & station.Name
                     End If
-                    Select Case i
-                        Case 0
-                            menuItem.Image = My.Resources.mnu1
-                        Case 1
-                            menuItem.Image = My.Resources.mnu2
-                        Case 2
-                            menuItem.Image = My.Resources.mnu3
-                        Case 3
-                            menuItem.Image = My.Resources.mnu4
-                        Case 4
-                            menuItem.Image = My.Resources.mnu5
-                        Case 5
-                            menuItem.Image = My.Resources.mnu6
 
-                        Case 6
-                            menuItem.Image = My.Resources.mnu7
-                        Case 7
-                            menuItem.Image = My.Resources.mnu8
-                        Case 8
-                            menuItem.Image = My.Resources.mnu9
-
-                        Case 9
-                            menuItem.Image = My.Resources.mnu10
-
-
-
-
-                    End Select
                     menuItem.Tag = station
 
                     AddHandler menuItem.Click, AddressOf FavoriteStation_Click
