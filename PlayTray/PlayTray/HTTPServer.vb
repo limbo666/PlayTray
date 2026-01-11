@@ -1,15 +1,8 @@
-﻿'curl http : //localhost:8999/status
-'curl http : //localhost:8999/play
-'curl http : //localhost:8999/setvolume?level=75
-'curl http : //localhost:8999/playstation?position=1
-'http: //localhost:8999/            gives the commands supported
-
-Imports System.Net
+﻿Imports System.Net
 Imports System.Net.Sockets
 Imports System.Text
 Imports System.Threading
 Imports System.IO
-
 
 Public Class HTTPServer
     Private listener As HttpListener
@@ -17,20 +10,9 @@ Public Class HTTPServer
     Private _isRunning As Boolean = False
     Private port As Integer
 
-
-
-    Private _isNetworkBound As Boolean = False  ' ADD THIS LINE
-
     Public ReadOnly Property IsRunning As Boolean
         Get
             Return _isRunning
-        End Get
-    End Property
-
-
-    Public ReadOnly Property IsNetworkAccessible As Boolean  ' ADD THIS PROPERTY
-        Get
-            Return _isNetworkBound
         End Get
     End Property
 
@@ -40,130 +22,66 @@ Public Class HTTPServer
 
     Public Function StartServer(bindAddress As String) As Boolean
         Try
-            If _isRunning Then
-                Return True
-            End If
+            If _isRunning Then Return True
 
-            ' Validate bind address
-            If String.IsNullOrWhiteSpace(bindAddress) Then
-                Throw New ArgumentException("Bind address cannot be empty")
-            End If
-
-            ' Create listener
             listener = New HttpListener()
 
-            ' ALWAYS bind to localhost and 127.0.0.1
-            listener.Prefixes.Add($"http://localhost:{port}/")
-            listener.Prefixes.Add($"http://127.0.0.1:{port}/")
+            ' PROFESSIONAL FIX:
+            ' We use the "Strong Wildcard" (+). 
+            ' This tells Windows: "Traffic on Port 8999 for ANY IP address on this machine."
+            ' This requires the 'netsh' reservation: netsh http add urlacl url=http://+:8999/ user=Everyone
+            listener.Prefixes.Add($"http://+:{port}/")
 
-            ' Also bind to selected network interface (if not localhost)
-            If bindAddress <> "localhost" AndAlso bindAddress <> "127.0.0.1" AndAlso bindAddress <> "*" Then
-                Try
-                    ' Validate it's a proper IPv4 address
-                    Dim testIP As IPAddress = Nothing
-                    If IPAddress.TryParse(bindAddress, testIP) AndAlso
-                   testIP.AddressFamily = AddressFamily.InterNetwork Then
-                        listener.Prefixes.Add($"http://{bindAddress}:{port}/")
-                        _isNetworkBound = True
-                    Else
-                        ' Invalid IP format, skip network binding
-                        _isNetworkBound = False
-                    End If
-                Catch ex As Exception
-                    ' Failed to bind to network address, continue with localhost only
-                    _isNetworkBound = False
-                End Try
-            ElseIf bindAddress = "*" Then
-                ' Wildcard binding
-                Try
-                    listener.Prefixes.Clear() ' Remove localhost bindings
-                    listener.Prefixes.Add($"http://*:{port}/")
-                    _isNetworkBound = True
-                Catch ex As Exception
-                    ' Wildcard failed, fall back to localhost
-                    listener.Prefixes.Clear()
-                    listener.Prefixes.Add($"http://localhost:{port}/")
-                    listener.Prefixes.Add($"http://127.0.0.1:{port}/")
-                    _isNetworkBound = False
-                End Try
+            listener.Start()
+            _isRunning = True
+
+            ' Start background thread
+            listenerThread = New Thread(AddressOf ProcessRequests)
+            listenerThread.IsBackground = True
+            listenerThread.Start()
+
+            Return True
+
+        Catch ex As HttpListenerException
+            _isRunning = False
+            ' Error 5 = Access Denied (User needs to run the netsh script)
+            If ex.ErrorCode = 5 Then
+                Throw New Exception("Access Denied. Please run the Network Setup script as Administrator.")
+            Else
+                Throw New Exception($"Server Error {ex.ErrorCode}: {ex.Message}")
             End If
-
-            ' Start listening
-            Try
-                listener.Start()
-                _isRunning = True
-
-                ' Start processing thread
-                listenerThread = New Thread(AddressOf ProcessRequests)
-                listenerThread.IsBackground = True
-                listenerThread.Start()
-
-                Return True
-
-            Catch ex As Exception
-                _isRunning = False
-                _isNetworkBound = False
-                Throw New Exception($"Failed to start server on port {port}. Error: {ex.Message}")
-            End Try
-
         Catch ex As Exception
             _isRunning = False
-            _isNetworkBound = False
             Throw
         End Try
-    End Function
-
-
-    Public Function GetBoundAddresses() As List(Of String)
-        Dim addresses As New List(Of String)()
-
-        Try
-            If listener IsNot Nothing AndAlso listener.IsListening Then
-                For Each prefix In listener.Prefixes
-                    addresses.Add(prefix)
-                Next
-            End If
-        Catch
-            ' Return empty list on error
-        End Try
-
-        Return addresses
     End Function
 
     Public Sub StopServer()
         Try
             _isRunning = False
-
             If listener IsNot Nothing Then
-                listener.Stop()
-                listener.Close()
+                listener.Close() ' Use Close, not Stop, to fully release the port
+                listener = Nothing
             End If
-
             If listenerThread IsNot Nothing Then
-                listenerThread.Abort()
+                If listenerThread.IsAlive Then listenerThread.Abort()
             End If
-
         Catch ex As Exception
             ' Silent fail
         End Try
     End Sub
 
     Private Sub ProcessRequests()
-        While _isRunning
+        While _isRunning AndAlso listener IsNot Nothing AndAlso listener.IsListening
             Try
-                Dim context As HttpListenerContext = listener.GetContext()
+                Dim context = listener.GetContext()
                 ThreadPool.QueueUserWorkItem(AddressOf HandleRequest, context)
             Catch ex As Exception
-                ' Listener stopped or error
-                If Not _isRunning Then
-                    Exit While
-                End If
+                ' Listener was stopped
+                Return
             End Try
         End While
     End Sub
-
-
-
 
     Private Sub HandleRequest(state As Object)
         Dim context As HttpListenerContext = DirectCast(state, HttpListenerContext)
@@ -179,73 +97,46 @@ Public Class HTTPServer
 
             Select Case path
                 Case "status"
-                    ' frmMain.StartSoftFlash()
                     jsonResponse = GetStatus()
-
                 Case "play"
-                    '  frmMain.StartSoftFlash()
                     jsonResponse = DoPlay()
-
                 Case "stop"
-                    '  frmMain.StartSoftFlash()
                     jsonResponse = DoStop()
-
                 Case "volume"
-                    '   frmMain.StartSoftFlash()
                     jsonResponse = GetVolume()
-
                 Case "setvolume"
-                    '   frmMain.StartSoftFlash()
                     Dim vol As String = request.QueryString("level")
-                    jsonResponse = SetVolume(vol)
-
+                    Dim volInt As Integer
+                    If Integer.TryParse(vol, volInt) Then
+                        jsonResponse = SetVolume(volInt)
+                    Else
+                        jsonResponse = CreateErrorResponse("Invalid volume")
+                    End If
                 Case "station"
-                    '  frmMain.StartSoftFlash()
                     jsonResponse = GetCurrentStation()
-
                 Case "playstation"
-                    '  frmMain.StartSoftFlash()
                     Dim pos As String = request.QueryString("position")
                     jsonResponse = PlayStation(pos)
-
                 Case "liststations"
-                    '  frmMain.StartSoftFlash()
                     jsonResponse = ListStations()
-
                 Case "tips"
-                    '  frmMain.StartSoftFlash()
                     jsonResponse = ShowTips()
-
                 Case "beloved"
-                    ' frmMain.StartSoftFlash()
                     jsonResponse = SaveBeloved()
-
-
                 Case "mute"
-                    '  frmMain.StartSoftFlash()
                     jsonResponse = DoMute()
-
                 Case "unmute"
-                    'frmMain.StartSoftFlash()
                     jsonResponse = DoUnmute()
-
                 Case "next"
-                    '  frmMain.StartSoftFlash()
                     jsonResponse = DoNext()
-
                 Case "previous"
-                    ' frmMain.StartSoftFlash()
                     jsonResponse = DoPrevious()
-
                 Case ""
-                    ' Root - show API info
                     jsonResponse = GetApiInfo()
-
                 Case Else
                     jsonResponse = CreateErrorResponse("Unknown command: " & path)
             End Select
 
-            ' Send response
             Dim buffer() As Byte = Encoding.UTF8.GetBytes(jsonResponse)
             response.ContentType = "application/json"
             response.ContentLength64 = buffer.Length
@@ -266,101 +157,7 @@ Public Class HTTPServer
         End Try
     End Sub
 
-    'Private Function DoNext() As String
-    '    Dim mainForm As frmMain = GetMainForm()
-    '    If mainForm IsNot Nothing Then
-    '        mainForm.Invoke(Sub() mainForm.TriggerNextStation())
-    '        Return CreateJsonResponse(True, "Playing next station")
-    '    End If
-
-    '    Return CreateErrorResponse("Main form not found")
-    'End Function
-
-    'Private Function DoPrevious() As String
-    '    Dim mainForm As frmMain = GetMainForm()
-    '    If mainForm IsNot Nothing Then
-    '        mainForm.Invoke(Sub() mainForm.TriggerPreviousStation())
-    '        Return CreateJsonResponse(True, "Playing previous station")
-    '    End If
-
-    '    Return CreateErrorResponse("Main form not found")
-    'End Function
-
-
-    Private Function DoNext() As String
-        Dim mainForm As frmMain = GetMainForm()
-        If mainForm IsNot Nothing Then
-            mainForm.Invoke(Sub()
-                                mainForm.StartSoftFlash()
-                                mainForm.TriggerNextStation()
-                            End Sub)
-            Return CreateJsonResponse(True, "Playing next station")
-        End If
-
-        Return CreateErrorResponse("Main form not found")
-    End Function
-
-    Private Function DoPrevious() As String
-        Dim mainForm As frmMain = GetMainForm()
-        If mainForm IsNot Nothing Then
-            mainForm.Invoke(Sub()
-                                mainForm.StartSoftFlash()
-                                mainForm.TriggerPreviousStation()
-                            End Sub)
-            Return CreateJsonResponse(True, "Playing previous station")
-        End If
-
-        Return CreateErrorResponse("Main form not found")
-    End Function
-
-    'Private Function DoMute() As String
-    '    Dim mainForm As frmMain = GetMainForm()
-    '    If mainForm IsNot Nothing Then
-    '        mainForm.Invoke(Sub() mainForm.TriggerTimedMute())
-    '        Return CreateJsonResponse(True, "Timed mute activated")
-    '    End If
-
-    '    Return CreateErrorResponse("Main form not found")
-    'End Function
-
-
-    Private Function DoMute() As String
-        Dim mainForm As frmMain = GetMainForm()
-        If mainForm IsNot Nothing Then
-            mainForm.Invoke(Sub()
-                                mainForm.StartSoftFlash()
-                                mainForm.TriggerTimedMute()
-                            End Sub)
-            Return CreateJsonResponse(True, "Timed mute started")
-        End If
-
-        Return CreateErrorResponse("Main form not found")
-    End Function
-
-    'Private Function DoUnmute() As String
-    '    Dim mainForm As frmMain = GetMainForm()
-    '    If mainForm IsNot Nothing Then
-    '        mainForm.Invoke(Sub() mainForm.TriggerUnmute())
-    '        Return CreateJsonResponse(True, "Volume restored")
-    '    End If
-
-    '    Return CreateErrorResponse("Main form not found")
-    'End Function
-
-    Private Function DoUnmute() As String
-        Dim mainForm As frmMain = GetMainForm()
-        If mainForm IsNot Nothing Then
-            mainForm.Invoke(Sub()
-                                mainForm.StartSoftFlash()
-                                mainForm.TriggerUnmute()
-                            End Sub)
-            Return CreateJsonResponse(True, "Volume restored")
-        End If
-
-        Return CreateErrorResponse("Main form not found")
-    End Function
-
-    ' API Command Handlers
+    ' --- API HANDLERS ---
 
     Private Function GetStatus() As String
         Dim status As String = If(g_IsPlaying, "playing", "stopped")
@@ -375,21 +172,6 @@ Public Class HTTPServer
         })
     End Function
 
-    'Private Function DoPlay() As String
-    '    If g_IsPlaying Then
-    '        Return CreateJsonResponse(True, "Already playing")
-    '    End If
-
-    '    ' Trigger play on main form
-    '    Dim mainForm As frmMain = GetMainForm()
-    '    If mainForm IsNot Nothing Then
-    '        mainForm.Invoke(Sub() mainForm.TriggerPlay())
-    '        Return CreateJsonResponse(True, "Playback started")
-    '    Else
-    '        Return CreateErrorResponse("Main form not found")
-    '    End If
-    'End Function
-
     Private Function DoPlay() As String
         Dim mainForm As frmMain = GetMainForm()
         If mainForm IsNot Nothing Then
@@ -399,24 +181,8 @@ Public Class HTTPServer
                             End Sub)
             Return CreateJsonResponse(True, "Playback started")
         End If
-
         Return CreateErrorResponse("Main form not found")
     End Function
-
-    'Private Function DoStop() As String
-    '    If Not g_IsPlaying Then
-    '        Return CreateJsonResponse(True, "Already stopped")
-    '    End If
-
-    '    Dim mainForm As frmMain = GetMainForm()
-    '    If mainForm IsNot Nothing Then
-    '        mainForm.Invoke(Sub() mainForm.TriggerStop())
-    '        Return CreateJsonResponse(True, "Playback stopped")
-    '    Else
-    '        Return CreateErrorResponse("Main form not found")
-    '    End If
-    'End Function
-
 
     Private Function DoStop() As String
         Dim mainForm As frmMain = GetMainForm()
@@ -427,7 +193,6 @@ Public Class HTTPServer
                             End Sub)
             Return CreateJsonResponse(True, "Playback stopped")
         End If
-
         Return CreateErrorResponse("Main form not found")
     End Function
 
@@ -437,33 +202,8 @@ Public Class HTTPServer
         })
     End Function
 
-    'Private Function SetVolume(volumeStr As String) As String
-    '    Dim volume As Integer
-    '    If Integer.TryParse(volumeStr, volume) Then
-    '        If volume < 0 Then volume = 0
-    '        If volume > 100 Then volume = 100
-
-    '        g_CurrentVolume = volume
-
-    '        Dim mainForm As frmMain = GetMainForm()
-    '        If mainForm IsNot Nothing Then
-    '            mainForm.Invoke(Sub() mainForm.ApplyVolume(volume))
-    '        End If
-
-    '        Return CreateJsonResponse(True, "Volume set to " & volume, New Dictionary(Of String, Object) From {
-    '            {"volume", volume}
-    '        })
-    '    Else
-    '        Return CreateErrorResponse("Invalid volume value. Must be 0-100.")
-    '    End If
-    'End Function
-
-
     Private Function SetVolume(level As Integer) As String
-        If level < 0 OrElse level > 100 Then
-            Return CreateErrorResponse("Volume must be between 0 and 100")
-        End If
-
+        If level < 0 OrElse level > 100 Then Return CreateErrorResponse("Volume must be 0-100")
         Dim mainForm As frmMain = GetMainForm()
         If mainForm IsNot Nothing Then
             mainForm.Invoke(Sub()
@@ -472,10 +212,8 @@ Public Class HTTPServer
                             End Sub)
             Return CreateJsonResponse(True, $"Volume set to {level}")
         End If
-
         Return CreateErrorResponse("Main form not found")
     End Function
-
 
     Private Function GetCurrentStation() As String
         If g_CurrentStation IsNot Nothing Then
@@ -484,9 +222,8 @@ Public Class HTTPServer
                 {"name", g_CurrentStation.Name},
                 {"link", g_CurrentStation.Link}
             })
-        Else
-            Return CreateJsonResponse(True, "No station selected")
         End If
+        Return CreateJsonResponse(True, "No station selected")
     End Function
 
     Private Function PlayStation(positionStr As String) As String
@@ -500,19 +237,15 @@ Public Class HTTPServer
                         mainForm.Invoke(Sub() mainForm.PlayStationByPosition(position))
                         Return CreateJsonResponse(True, "Playing station: " & station.Name)
                     End If
-                Else
-                    Return CreateErrorResponse("Station not found at position " & position)
                 End If
             End If
         End If
-
         Return CreateErrorResponse("Invalid position")
     End Function
 
     Private Function ListStations() As String
         If g_StationManager IsNot Nothing Then
             Dim stationList As New List(Of Dictionary(Of String, Object))
-
             For Each station In g_StationManager.Stations
                 stationList.Add(New Dictionary(Of String, Object) From {
                     {"position", station.Position},
@@ -520,26 +253,13 @@ Public Class HTTPServer
                     {"link", station.Link}
                 })
             Next
-
             Return CreateJsonResponse(True, "Station list", New Dictionary(Of String, Object) From {
                 {"stations", stationList},
                 {"count", stationList.Count}
             })
         End If
-
         Return CreateErrorResponse("Station manager not available")
     End Function
-
-    'Private Function ShowTips() As String
-    '    Dim mainForm As frmMain = GetMainForm()
-    '    If mainForm IsNot Nothing Then
-    '        mainForm.Invoke(Sub() mainForm.ShowTipsFromHotkey())
-    '        Return CreateJsonResponse(True, "Tips displayed")
-    '    End If
-
-    '    Return CreateErrorResponse("Main form not found")
-    'End Function
-
 
     Private Function ShowTips() As String
         Dim mainForm As frmMain = GetMainForm()
@@ -550,19 +270,8 @@ Public Class HTTPServer
                             End Sub)
             Return CreateJsonResponse(True, "Tips window shown")
         End If
-
         Return CreateErrorResponse("Main form not found")
     End Function
-
-    'Private Function SaveBeloved() As String
-    '    Dim mainForm As frmMain = GetMainForm()
-    '    If mainForm IsNot Nothing Then
-    '        mainForm.Invoke(Sub() mainForm.TriggerSaveBeloved())
-    '        Return CreateJsonResponse(True, "Beloved track saved")
-    '    End If
-
-    '    Return CreateErrorResponse("Main form not found")
-    'End Function
 
     Private Function SaveBeloved() As String
         Dim mainForm As frmMain = GetMainForm()
@@ -571,35 +280,68 @@ Public Class HTTPServer
                                 mainForm.StartSoftFlash()
                                 mainForm.TriggerSaveBeloved()
                             End Sub)
-            Return CreateJsonResponse(True, "Track saved to beloved list")
+            Return CreateJsonResponse(True, "Track saved")
         End If
+        Return CreateErrorResponse("Main form not found")
+    End Function
 
+    Private Function DoMute() As String
+        Dim mainForm As frmMain = GetMainForm()
+        If mainForm IsNot Nothing Then
+            mainForm.Invoke(Sub()
+                                mainForm.StartSoftFlash()
+                                mainForm.TriggerTimedMute()
+                            End Sub)
+            Return CreateJsonResponse(True, "Mute started")
+        End If
+        Return CreateErrorResponse("Main form not found")
+    End Function
+
+    Private Function DoUnmute() As String
+        Dim mainForm As frmMain = GetMainForm()
+        If mainForm IsNot Nothing Then
+            mainForm.Invoke(Sub()
+                                mainForm.StartSoftFlash()
+                                mainForm.TriggerUnmute()
+                            End Sub)
+            Return CreateJsonResponse(True, "Volume restored")
+        End If
+        Return CreateErrorResponse("Main form not found")
+    End Function
+
+    Private Function DoNext() As String
+        Dim mainForm As frmMain = GetMainForm()
+        If mainForm IsNot Nothing Then
+            mainForm.Invoke(Sub()
+                                mainForm.StartSoftFlash()
+                                mainForm.TriggerNextStation()
+                            End Sub)
+            Return CreateJsonResponse(True, "Next station")
+        End If
+        Return CreateErrorResponse("Main form not found")
+    End Function
+
+    Private Function DoPrevious() As String
+        Dim mainForm As frmMain = GetMainForm()
+        If mainForm IsNot Nothing Then
+            mainForm.Invoke(Sub()
+                                mainForm.StartSoftFlash()
+                                mainForm.TriggerPreviousStation()
+                            End Sub)
+            Return CreateJsonResponse(True, "Previous station")
+        End If
         Return CreateErrorResponse("Main form not found")
     End Function
 
     Private Function GetApiInfo() As String
-        Return CreateJsonResponse(True, "PlayTray API Server", New Dictionary(Of String, Object) From {
-            {"version", APP_VERSION},
+        Return CreateJsonResponse(True, "PlayTray API Ready", New Dictionary(Of String, Object) From {
             {"endpoints", New String() {
-                "/status - Get current playback status",
-                "/play - Start playback",
-                "/stop - Stop playback",
-                "/volume - Get current volume",
-                "/setvolume?level=50 - Set volume (0-100)",
-                "/station - Get current station info",
-                "/playstation?position=1 - Play station by position (1-10)",
-                "/liststations - List all favorite stations",
-                 "/next - Play next favorite station",
-    "/previous - Play previous favorite station",
-                "/tips - Show tips window",
-                "/beloved - Save current track to beloved",
-                    "/mute - Start timed mute",
-    "/unmute - Restore volume"
+                "/status", "/play", "/stop", "/volume", "/setvolume", "/station", "/playstation", "/liststations", "/next", "/previous", "/tips", "/beloved", "/mute", "/unmute"
             }}
         })
     End Function
 
-    ' Helper Functions
+    ' --- HELPERS ---
 
     Private Function GetMainForm() As frmMain
         Try

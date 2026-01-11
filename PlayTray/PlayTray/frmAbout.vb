@@ -8,6 +8,8 @@ Public Class frmAbout
         ' Load app information
         LoadAppInfo()
 
+        APP_VERSION = Application.ProductVersion
+
         ' Load system information
         LoadSystemInfo()
 

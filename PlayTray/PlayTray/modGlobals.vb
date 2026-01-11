@@ -3,7 +3,7 @@
 Module modGlobals
     ' Application Info
     Public Const APP_NAME As String = "Play Tray"
-    Public Const APP_VERSION As String = "1.0.0.4"
+    Public APP_VERSION As String = "1.0.0.0 - dummy"
 
     ' BASS Audio
     Public g_StreamHandle As Integer = 0

@@ -48,9 +48,6 @@ Partial Class frmSettings
         Me.btnSetupNetwork = New System.Windows.Forms.Button()
         Me.lblNote2 = New System.Windows.Forms.Label()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.btnRefreshIPs = New System.Windows.Forms.Button()
-        Me.lblBindAddress = New System.Windows.Forms.Label()
-        Me.cboBindAddress = New System.Windows.Forms.ComboBox()
         Me.lblServerStatus = New System.Windows.Forms.Label()
         Me.numServerPort = New System.Windows.Forms.NumericUpDown()
         Me.chkEnableServer = New System.Windows.Forms.CheckBox()
@@ -80,6 +77,7 @@ Partial Class frmSettings
         Me.btnOK = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnApply = New System.Windows.Forms.Button()
+        Me.lblPort = New System.Windows.Forms.Label()
         Me.tcSettings.SuspendLayout()
         Me.Tab1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -360,9 +358,7 @@ Partial Class frmSettings
         '
         'GroupBox6
         '
-        Me.GroupBox6.Controls.Add(Me.btnRefreshIPs)
-        Me.GroupBox6.Controls.Add(Me.lblBindAddress)
-        Me.GroupBox6.Controls.Add(Me.cboBindAddress)
+        Me.GroupBox6.Controls.Add(Me.lblPort)
         Me.GroupBox6.Controls.Add(Me.lblServerStatus)
         Me.GroupBox6.Controls.Add(Me.numServerPort)
         Me.GroupBox6.Controls.Add(Me.chkEnableServer)
@@ -373,45 +369,19 @@ Partial Class frmSettings
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Server"
         '
-        'btnRefreshIPs
-        '
-        Me.btnRefreshIPs.Location = New System.Drawing.Point(467, 85)
-        Me.btnRefreshIPs.Name = "btnRefreshIPs"
-        Me.btnRefreshIPs.Size = New System.Drawing.Size(75, 32)
-        Me.btnRefreshIPs.TabIndex = 5
-        Me.btnRefreshIPs.Text = "🔄 Refresh"
-        Me.btnRefreshIPs.UseVisualStyleBackColor = True
-        '
-        'lblBindAddress
-        '
-        Me.lblBindAddress.AutoSize = True
-        Me.lblBindAddress.Location = New System.Drawing.Point(215, 61)
-        Me.lblBindAddress.Name = "lblBindAddress"
-        Me.lblBindAddress.Size = New System.Drawing.Size(80, 13)
-        Me.lblBindAddress.TabIndex = 4
-        Me.lblBindAddress.Text = "Bind to address"
-        '
-        'cboBindAddress
-        '
-        Me.cboBindAddress.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboBindAddress.FormattingEnabled = True
-        Me.cboBindAddress.Location = New System.Drawing.Point(301, 58)
-        Me.cboBindAddress.Name = "cboBindAddress"
-        Me.cboBindAddress.Size = New System.Drawing.Size(241, 21)
-        Me.cboBindAddress.TabIndex = 3
-        '
         'lblServerStatus
         '
         Me.lblServerStatus.AutoSize = True
+        Me.lblServerStatus.Font = New System.Drawing.Font("Consolas", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.lblServerStatus.Location = New System.Drawing.Point(215, 88)
         Me.lblServerStatus.Name = "lblServerStatus"
-        Me.lblServerStatus.Size = New System.Drawing.Size(104, 13)
+        Me.lblServerStatus.Size = New System.Drawing.Size(154, 15)
         Me.lblServerStatus.TabIndex = 2
         Me.lblServerStatus.Text = "Server status display"
         '
         'numServerPort
         '
-        Me.numServerPort.Location = New System.Drawing.Point(385, 20)
+        Me.numServerPort.Location = New System.Drawing.Point(311, 54)
         Me.numServerPort.Maximum = New Decimal(New Integer() {65535, 0, 0, 0})
         Me.numServerPort.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.numServerPort.Name = "numServerPort"
@@ -685,6 +655,15 @@ Partial Class frmSettings
         Me.btnApply.Text = "Apply"
         Me.btnApply.UseVisualStyleBackColor = True
         '
+        'lblPort
+        '
+        Me.lblPort.AutoSize = True
+        Me.lblPort.Location = New System.Drawing.Point(269, 56)
+        Me.lblPort.Name = "lblPort"
+        Me.lblPort.Size = New System.Drawing.Size(26, 13)
+        Me.lblPort.TabIndex = 3
+        Me.lblPort.Text = "Port"
+        '
         'frmSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -771,9 +750,6 @@ Partial Class frmSettings
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents lblNote As Label
-    Friend WithEvents btnRefreshIPs As Button
-    Friend WithEvents lblBindAddress As Label
-    Friend WithEvents cboBindAddress As ComboBox
     Friend WithEvents btnSetupNetwork As Button
     Friend WithEvents btnSetupFirewall As Button
     Friend WithEvents btnTestFirewall As Button
@@ -791,4 +767,5 @@ Partial Class frmSettings
     Friend WithEvents lnkGetMusixMatchToken As LinkLabel
     Friend WithEvents txtMusixMatchToken As TextBox
     Friend WithEvents lblMusixMatch As Label
+    Friend WithEvents lblPort As Label
 End Class

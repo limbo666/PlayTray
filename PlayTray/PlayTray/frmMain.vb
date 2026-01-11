@@ -15,6 +15,10 @@ Public Class frmMain
 
     Private metadataSyncProc As SYNCPROC
 
+    Private endSyncProc As SYNCPROC ' Keep this alive to prevent Garbage Collection
+    Private reconnectAttempt As Integer = 0
+    Private Const MAX_RECONNECT_ATTEMPTS As Integer = 5
+
     ' Windows message constant for hotkeys
     Private Const WM_HOTKEY As Integer = &H312
 
@@ -62,6 +66,59 @@ Public Class frmMain
     Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Me.Hide()
     End Sub
+
+
+
+
+
+    Private Sub AttemptReconnect()
+        If isShuttingDown Then Return
+
+        ' Only reconnect if we were supposed to be playing
+        If g_IsPlaying Then
+            reconnectAttempt += 1
+
+            If reconnectAttempt > MAX_RECONNECT_ATTEMPTS Then
+                Me.Invoke(Sub()
+                              ShowTipsWindow("Connection Lost", "Gave up after 5 attempts.", "Error", True)
+                              StopPlayback()
+                          End Sub)
+                Return
+            End If
+
+            ' Update UI to show we are trying
+            Me.Invoke(Sub()
+                          niTray.Text = $"{APP_NAME} - Reconnecting ({reconnectAttempt})..."
+                          tsmiStationInfo.Text = $"⚡ Reconnecting ({reconnectAttempt})..."
+                          ShowTipsWindow("Connection Lost", $"Reconnecting... ({reconnectAttempt})", "Network Error")
+                      End Sub)
+
+            ' Wait 3 seconds for network to come back (DHCP etc)
+            Task.Delay(3000).ContinueWith(Sub(t)
+                                              ' Retry playing the CURRENT station info
+                                              If g_CurrentStation IsNot Nothing Then
+                                                  ' Call PlayStream on the main UI thread
+                                                  Me.Invoke(Sub() PlayStream(g_CurrentStation.Link, g_CurrentStation.Name))
+                                              End If
+                                          End Sub)
+        End If
+    End Sub
+
+    ' [Add this Callback Function that BASS calls when stream dies]
+    Private Sub EndSync(handle As Integer, channel As Integer, data As Integer, user As IntPtr)
+        ' This runs on a background BASS thread.
+        ' If the stream ended BUT we didn't ask it to stop (g_IsPlaying is still True), it's a crash.
+        If g_IsPlaying AndAlso Not isConnecting Then
+            AttemptReconnect()
+        End If
+    End Sub
+
+
+
+
+
+
+
 
 
 
@@ -123,6 +180,9 @@ Public Class frmMain
             MessageBox.Show("Error starting mute: " & ex.Message, "Error")
         End Try
     End Sub
+
+
+
 
     Private Sub RestoreVolume()
         Try
@@ -352,27 +412,124 @@ Public Class frmMain
                 tipsForm = New frmTips()
             End If
 
-            '
-            ' with album art (if available)
-            tipsForm.ShowTips(stationName, trackInfo, status, currentAlbumArtPath)  ' CHANGED: Added currentAlbumArtPath
+            ' === LOGIC FIX ===
+            ' Decide what image to show BEFORE calling the form.
+            ' If we are Connecting or have an Error, force the image path to be empty.
+            ' This ensures the "ugly" old cover doesn't show up during connection.
+            Dim imageToSend As String = currentAlbumArtPath
 
-        Catch ex As Exception
-            'MsgBox("Error showing tips: " & ex.Message, MsgBoxStyle.Critical, "Error")
-        End Try
-    End Sub
-    Public Sub ShowTipsFromHotkey()
-        ' Called from hotkey - ALWAYS show regardless of settings
-        Try
-            If g_CurrentStation IsNot Nothing Then
-                Dim trackInfo As String = tsmiStationInfo.Text.Replace("🎵 ", "").Replace(g_CurrentStation.Name & " - ", "")
-                Dim status As String = If(g_IsPlaying, "Playing", "Stopped")
-                ShowTipsWindow(g_CurrentStation.Name, trackInfo, status, True)  ' forceShow = True
-            Else
-                ShowTipsWindow("Play Tray", "No station playing", "Stopped", True)  ' forceShow = True
+            If trackInfo.Contains("Connecting") OrElse
+               status.Contains("Connecting") OrElse
+               status.Contains("Error") OrElse
+               status.Contains("Unavailable") Then
+
+                imageToSend = "" ' Force empty so frmTips shows the default icon
             End If
+
+            ' Pass the calculated image variable (imageToSend), not the raw global variable
+            tipsForm.ShowTips(stationName, trackInfo, status, imageToSend)
+
         Catch ex As Exception
             ' Silent fail
         End Try
+    End Sub
+
+
+    Private Sub ResetCoverArt()
+        ' 1. Wipe the global path variable immediately
+        currentAlbumArtPath = ""
+
+        ' 2. If the Tips window is open, force it to clear the image NOW
+        If tipsForm IsNot Nothing AndAlso Not tipsForm.IsDisposed Then
+            ' Passing empty string to your existing method clears the image
+            tipsForm.Invoke(Sub() tipsForm.UpdateAlbumArt(""))
+        End If
+    End Sub
+
+    Private Sub ProcessNewTrack(title As String, stationName As String)
+        ' 1. Update Global Variable
+        g_CurrentTrackInfo = title
+
+        ' 2. Trigger YOUR Existing Cover Art Search
+        ' This calls the Sub at line 256 in your uploaded file
+        FetchAlbumArt(title)
+
+        ' 3. Update Registry (LCD Smartie)
+        If g_SettingsManager IsNot Nothing AndAlso g_SettingsManager.ExtractTitle Then
+            RegistryExporter.UpdateRegistry(RegistryExporter.PlayerStatus.Playing, stationName, title, g_CurrentVolume)
+        End If
+
+        ' 4. Update UI Text
+        Dim trayText As String = APP_NAME & " - " & title
+        If trayText.Length > 63 Then trayText = trayText.Substring(0, 63)
+        niTray.Text = trayText
+
+        ' 5. Show Tips (Now Playing)
+        ' This will pick up the cover if FetchAlbumArt has finished, 
+        ' or show the text immediately while the art downloads.
+        ShowTipsWindow(stationName, title, "Now Playing")
+    End Sub
+
+    ' [In frmMain.vb]
+    Private Sub SearchAlbumArt(trackTitle As String)
+        ' Validate inputs
+        If String.IsNullOrEmpty(trackTitle) OrElse
+           trackTitle = "Connecting..." OrElse
+           g_SettingsManager Is Nothing Then Return
+
+        ' Run search in background to avoid freezing the UI
+        Task.Run(Sub()
+                     Try
+                         ' =========================================================
+                         ' PLACE YOUR COVER SEARCH LOGIC HERE
+                         ' =========================================================
+                         ' Example logic (You need to replace this with your actual API calls):
+                         ' 
+                         ' 1. Check if we have a cached image for this track
+                         ' 2. If not, call Discogs/MusixMatch API using trackTitle
+                         ' 3. Download the image to a temp file
+                         ' 4. Save the path to 'currentAlbumArtPath'
+                         '
+                         ' For now, we just log that we are searching:
+                         ' Console.WriteLine("Searching cover for: " & trackTitle)
+                         ' =========================================================
+
+                         ' AFTER you find the image path (e.g. foundPath), update the UI:
+                         ' Me.Invoke(Sub()
+                         '     currentAlbumArtPath = foundPath
+                         '     If tipsForm IsNot Nothing AndAlso tipsForm.Visible Then
+                         '         tipsForm.UpdateAlbumArt(currentAlbumArtPath)
+                         '     End If
+                         '     UpdateTrayIcon() ' If your tray icon shows the cover
+                         ' End Sub)
+
+                     Catch ex As Exception
+                         ' Log error
+                     End Try
+                 End Sub)
+    End Sub
+
+    Public Sub ShowTipsFromHotkey()
+        Dim stationName As String = "Unknown Station"
+        If g_CurrentStation IsNot Nothing Then stationName = g_CurrentStation.Name
+
+        ' Logic to determine Status Text
+        Dim status As String = "Stopped"
+
+        If g_IsPlaying Then
+            If isConnecting Then
+                status = "Connecting..."
+            Else
+                ' If we are playing and have a title, show "Now Playing"
+                ' (Even if the stream is technically still buffering audio bytes)
+                status = "Now Playing"
+            End If
+        Else
+            status = "Stopped"
+        End If
+
+        ' Use the CURRENT global track info, which ProcessNewTrack just updated
+        ShowTipsWindow(stationName, g_CurrentTrackInfo, status, True)
     End Sub
 
 
@@ -535,7 +692,7 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        APP_VERSION = Application.ProductVersion
 
         If NeedsAdminElevation() AndAlso Not IsRunningAsAdmin() Then
             Try
@@ -732,100 +889,29 @@ Public Class frmMain
     Public Sub TriggerPreviousStation()
         PlayPreviousFavorite()
     End Sub
+
+
+
     Private Sub StartHTTPServer()
         Try
-            If g_SettingsManager Is Nothing OrElse Not g_SettingsManager.EnableServer Then
-                Return
-            End If
+            If g_SettingsManager Is Nothing OrElse Not g_SettingsManager.EnableServer Then Return
 
             Dim port As Integer = g_SettingsManager.ServerPort
-            Dim bindAddress As String = g_SettingsManager.ServerBindAddress
 
-            ' Validate and clean bind address
-            bindAddress = ValidateBindAddress(bindAddress)
-
+            ' Initialize Server
             g_HTTPServer = New HTTPServer(port)
 
-            Try
-                If g_HTTPServer.StartServer(bindAddress) Then
-                    ' Success!
-
-                    ' Start broadcast service
-                    StartBroadcastService()
-
-                    ' Show bound addresses (optional, for debugging)
-                    ' Dim boundAddresses = g_HTTPServer.GetBoundAddresses()
-                    ' Console.WriteLine("Server bound to: " & String.Join(", ", boundAddresses))
-                End If
-
-            Catch ex As HttpListenerException
-                ' Access denied error
-                If ex.ErrorCode = 5 OrElse ex.Message.Contains("Access is denied") Then
-                    HandleServerAccessDenied(bindAddress, port)
-                Else
-                    ' Other error - show details
-                    MessageBox.Show($"Failed to start HTTP server: {ex.Message}" & vbCrLf & vbCrLf &
-                              $"Attempted to bind to: {bindAddress}:{port}" & vbCrLf & vbCrLf &
-                              "The server will be disabled. Check Settings → Network.",
-                              "Server Error",
-                              MessageBoxButtons.OK,
-                              MessageBoxIcon.Error)
-                End If
-
-            Catch ex As Exception
-                ' General error
-                MessageBox.Show($"Failed to start HTTP server: {ex.Message}" & vbCrLf & vbCrLf &
-                          $"Attempted to bind to: {bindAddress}:{port}",
-                          "Server Error",
-                          MessageBoxButtons.OK,
-                          MessageBoxIcon.Error)
-            End Try
+            ' Bind to "All Interfaces" (+).
+            If g_HTTPServer.StartServer("+") Then
+                StartBroadcastService()
+            End If
 
         Catch ex As Exception
-            MessageBox.Show("Error starting HTTP server: " & ex.Message, "Error")
+            MessageBox.Show("Server failed to start." & vbCrLf & ex.Message, "Server Error")
         End Try
     End Sub
 
-    Private Function ValidateBindAddress(bindAddress As String) As String
-        Try
-            ' Clean up the address
-            If String.IsNullOrWhiteSpace(bindAddress) Then
-                bindAddress = GetFirstNetworkIP()
-            End If
 
-            ' If still empty or localhost, use localhost
-            If String.IsNullOrWhiteSpace(bindAddress) OrElse
-           bindAddress = "localhost" OrElse
-           bindAddress = "127.0.0.1" Then
-                Return "localhost"
-            End If
-
-            ' If wildcard, keep it
-            If bindAddress = "*" Then
-                Return "*"
-            End If
-
-            ' Try to parse as IP address to validate format
-            Dim testIP As IPAddress = Nothing
-            If IPAddress.TryParse(bindAddress, testIP) Then
-                ' Valid IP format
-                If testIP.AddressFamily = Sockets.AddressFamily.InterNetwork Then
-                    ' IPv4 - good
-                    Return bindAddress
-                Else
-                    ' IPv6 - not supported, fall back
-                    Return GetFirstNetworkIP()
-                End If
-            Else
-                ' Invalid format, get first available
-                Return GetFirstNetworkIP()
-            End If
-
-        Catch ex As Exception
-            ' On any error, fall back to localhost
-            Return "localhost"
-        End Try
-    End Function
 
     Private Function GetFirstNetworkIP() As String
         Try
@@ -1189,7 +1275,7 @@ Public Class frmMain
         ' Open submenu items
         tsmiOpenLink.Enabled = True
         tsmiOpenPlaylist.Enabled = True
-        tsmiOpenYouTube.Enabled = False ' Future feature
+        tsmiOpenYouTube.Enabled = True ' Future feature
     End Sub
 
     Private Sub UpdateTrayIcon()
@@ -1590,82 +1676,89 @@ Public Class frmMain
     End Sub
 
 
+    ' Flag to handle race conditions (e.g. user clicks Stop while still connecting)
+    Private isConnecting As Boolean = False
+
     Private Sub PlayStream(url As String, stationName As String)
-        Try
-            ' Stop any existing stream
-            StopPlayback()
+        ' 1. STOP & CLEANUP
+        If g_StreamHandle <> 0 Then
+            Bass.BASS_ChannelStop(g_StreamHandle)
+            Bass.BASS_StreamFree(g_StreamHandle)
+            g_StreamHandle = 0
+        End If
 
-            ' Create stream
-            g_StreamHandle = Bass.BASS_StreamCreateURL(
-            url,
-            0,
-            BASSFlag.BASS_DEFAULT Or BASSFlag.BASS_STREAM_STATUS,
-            Nothing,
-            IntPtr.Zero
-        )
+        ' === PURGE OLD COVER ART INSTANTLY ===
+        ResetCoverArt()
+        ' =====================================
 
-            If g_StreamHandle = 0 Then
-                Dim errorCode = Bass.BASS_ErrorGetCode()
-                MessageBox.Show("Failed to open stream: " & errorCode.ToString(), "Error")
+        ' 2. UPDATE UI
+        isConnecting = True
+        g_IsPlaying = False
 
-                ' Update registry - Error status
-                If g_SettingsManager IsNot Nothing AndAlso g_SettingsManager.ExtractTitle Then
-                    RegistryExporter.UpdateRegistry(RegistryExporter.PlayerStatus.ErrorState, stationName, "Failed to open stream", g_CurrentVolume)
-                End If
+        niTray.Icon = My.Resources.play_icon
+        niTray.Text = APP_NAME & " - Connecting..."
+        tsmiStationInfo.Text = $"⏳ Connecting to {stationName}..."
+        tsmiPlay.Enabled = False
+        tsmiStop.Enabled = True
 
-                Return
-            End If
+        ' Force "Connecting" image (Empty)
+        ShowTipsWindow(stationName, "Connecting...", "Please wait...")
 
-            ' Set up metadata sync
-            Bass.BASS_ChannelSetSync(g_StreamHandle, BASSSync.BASS_SYNC_META, 0, metadataSyncProc, IntPtr.Zero)
-            Bass.BASS_ChannelSetSync(g_StreamHandle, BASSSync.BASS_SYNC_OGG_CHANGE, 0, metadataSyncProc, IntPtr.Zero)
+        ' 3. CONNECT (Background)
+        Task.Run(Sub()
+                     Dim newStream As Integer = 0
+                     Try
+                         newStream = Bass.BASS_StreamCreateURL(url, 0, BASSFlag.BASS_DEFAULT Or BASSFlag.BASS_STREAM_STATUS, Nothing, IntPtr.Zero)
+                         If newStream <> 0 Then Threading.Thread.Sleep(1000) ' Stabilization
+                     Catch
+                         newStream = 0
+                     End Try
 
-            ' Set volume
-            Bass.BASS_ChannelSetAttribute(g_StreamHandle, BASSAttribute.BASS_ATTRIB_VOL, g_CurrentVolume / 100.0F)
+                     ' 4. UPDATE MAIN THREAD
+                     Me.Invoke(Sub()
+                                   If Not isConnecting Then
+                                       If newStream <> 0 Then Bass.BASS_StreamFree(newStream)
+                                       Return
+                                   End If
+                                   isConnecting = False
 
-            ' Start playback
-            If Bass.BASS_ChannelPlay(g_StreamHandle, False) Then
-                g_IsPlaying = True
-                ' Clear auto-close timer when playing
-                lastStopTime = DateTime.MinValue
-                g_CurrentTrackInfo = "Getting stream..."  ' Initialize track info
-                UpdateTrayIcon()
-                tsmiStationInfo.Text = "🎵 " & stationName & " - Getting stream..."
-                tsmiStationInfo.Enabled = True
+                                   If newStream = 0 Then
+                                       ShowTipsWindow(stationName, "Stream Unavailable", "Error", True)
+                                       StopPlayback()
+                                   Else
+                                       ' SUCCESS
+                                       g_StreamHandle = newStream
+                                       Bass.BASS_ChannelSetAttribute(g_StreamHandle, BASSAttribute.BASS_ATTRIB_VOL, g_CurrentVolume / 100.0F)
 
-                ' Show tips when starting playback
-                ShowTipsWindow(stationName, "Getting stream...", "Playing")
+                                       ' Set Callbacks
+                                       endSyncProc = New SYNCPROC(AddressOf EndSync)
+                                       Bass.BASS_ChannelSetSync(g_StreamHandle, BASSSync.BASS_SYNC_END, 0, endSyncProc, IntPtr.Zero)
+                                       Bass.BASS_ChannelSetSync(g_StreamHandle, BASSSync.BASS_SYNC_META, 0, metadataSyncProc, IntPtr.Zero)
 
-                ' Update registry - Connecting status
-                If g_SettingsManager IsNot Nothing AndAlso g_SettingsManager.ExtractTitle Then
-                    RegistryExporter.UpdateRegistry(RegistryExporter.PlayerStatus.Connecting, stationName, "Connecting...", g_CurrentVolume)
-                End If
-            Else
-                Dim errorCode = Bass.BASS_ErrorGetCode()
-                MessageBox.Show("Failed to play stream: " & errorCode.ToString(), "Error")
-                Bass.BASS_StreamFree(g_StreamHandle)
-                g_StreamHandle = 0
+                                       reconnectAttempt = 0
+                                       g_IsPlaying = True
+                                       UpdateTrayIcon()
+                                       UpdateStationDisplay()
 
-                ' Update registry - Error status
-                If g_SettingsManager IsNot Nothing AndAlso g_SettingsManager.ExtractTitle Then
-                    RegistryExporter.UpdateRegistry(RegistryExporter.PlayerStatus.ErrorState, stationName, "Failed to play", g_CurrentVolume)
-                End If
-            End If
+                                       If Bass.BASS_ChannelPlay(g_StreamHandle, False) Then
 
-        Catch ex As Exception
-            MessageBox.Show("Error playing stream: " & ex.Message, "Error")
+                                           ' --- AGGRESSIVE FETCH + COVER SEARCH ---
+                                           Dim initialTitle As String = GetInitialStreamTitle(g_StreamHandle)
+                                           If String.IsNullOrEmpty(initialTitle) Then initialTitle = stationName
 
-            ' Update registry - Error status
-            If g_SettingsManager IsNot Nothing AndAlso g_SettingsManager.ExtractTitle Then
-                RegistryExporter.UpdateRegistry(RegistryExporter.PlayerStatus.ErrorState, stationName, "Exception: " & ex.Message, g_CurrentVolume)
-            End If
-        End Try
+                                           ' Call the central processor we just fixed
+                                           ProcessNewTrack(initialTitle, stationName)
+                                           ' ---------------------------------------
+
+                                       Else
+                                           ShowTipsWindow(stationName, "Playback Failed", "Error", True)
+                                           StopPlayback()
+                                       End If
+                                   End If
+                               End Sub)
+                 End Sub)
     End Sub
 
-
-
-
-    ' Public method for external forms to play streams
     Public Sub PlayStreamFromLink(url As String, stationName As String)
         PlayStream(url, stationName)
     End Sub
@@ -1676,7 +1769,15 @@ Public Class frmMain
     End Sub
 
 
+
     Private Sub StopPlayback()
+        isConnecting = False
+        g_IsPlaying = False
+
+        ' === FIX 3: PURGE COVER ON STOP ===
+        ResetCoverArt()
+        ' ==================================
+
         Try
             If g_StreamHandle <> 0 Then
                 Bass.BASS_ChannelStop(g_StreamHandle)
@@ -1684,19 +1785,16 @@ Public Class frmMain
                 g_StreamHandle = 0
             End If
 
-            g_IsPlaying = False
-            ' Reset auto-close timer
-            ResetStopTime()
+            g_CurrentTrackInfo = ""
 
-            ' Cancel timed mute if active
-            If isMuted Then
-                RestoreVolume()
-            End If
+            ResetStopTime()
+            reconnectAttempt = 0
+
+            If isMuted Then RestoreVolume()
 
             UpdateTrayIcon()
             UpdateStationDisplay()
 
-            ' Update registry - Stopped status (only if not shutting down)
             If Not isShuttingDown AndAlso g_SettingsManager IsNot Nothing AndAlso g_SettingsManager.ExtractTitle Then
                 Dim stationName As String = If(g_CurrentStation IsNot Nothing, g_CurrentStation.Name, "")
                 RegistryExporter.UpdateRegistry(RegistryExporter.PlayerStatus.Stopped, stationName, "", g_CurrentVolume)
@@ -1706,7 +1804,6 @@ Public Class frmMain
             MessageBox.Show($"Error stopping playback: {ex.Message}", "Error")
         End Try
     End Sub
-
     ' ============================================
     ' METADATA HANDLING (Phase 3)
     ' ============================================
@@ -2455,21 +2552,49 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub tsmiShowLyrics_Click(sender As Object, e As EventArgs) Handles tsmiShowLyrics.Click
+
+    Private Function GetInitialStreamTitle(handle As Integer) As String
         Try
-            ' Check if we have track info
-            If String.IsNullOrWhiteSpace(g_CurrentTrackInfo) OrElse
-               g_CurrentTrackInfo.Equals("Connecting...", StringComparison.OrdinalIgnoreCase) Then
-                MessageBox.Show("No track information available.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Return
+            ' STRATEGY A: Standard Metadata (StreamTitle='...')
+            Dim ptr As IntPtr = Bass.BASS_ChannelGetTags(handle, BASSTag.BASS_TAG_META)
+            If ptr <> IntPtr.Zero Then
+                Dim rawMeta As String = Marshal.PtrToStringAnsi(ptr)
+                If Not String.IsNullOrEmpty(rawMeta) Then
+                    Dim match = Regex.Match(rawMeta, "StreamTitle='(.*?)';", RegexOptions.IgnoreCase)
+                    If match.Success Then
+                        Return match.Groups(1).Value.Trim()
+                    End If
+                End If
             End If
 
-            ' Show lyrics form
-            Dim lyricsForm As New frmLyrics()
-            lyricsForm.ShowLyrics(g_CurrentTrackInfo)
+            ' STRATEGY B: ICY Headers (Fallback for stations like ERT)
+            Dim icyPtr As IntPtr = Bass.BASS_ChannelGetTags(handle, BASSTag.BASS_TAG_ICY)
+            If icyPtr <> IntPtr.Zero Then
+                Dim tagList As New List(Of String)
+                Dim currentPtr As IntPtr = icyPtr
+
+                ' Build the list of headers
+                While True
+                    Dim currentTag As String = Marshal.PtrToStringAnsi(currentPtr)
+                    If String.IsNullOrEmpty(currentTag) Then Exit While
+                    tagList.Add(currentTag)
+                    currentPtr += currentTag.Length + 1
+                End While
+
+                ' FIX: Use "headerItem" instead of "tag" to avoid conflict with Me.Tag property
+                For Each headerItem As String In tagList
+                    If headerItem.StartsWith("icy-name:", StringComparison.OrdinalIgnoreCase) Then
+                        Return headerItem.Substring(9).Trim()
+                    End If
+                Next
+            End If
 
         Catch ex As Exception
-            MessageBox.Show("Error showing lyrics: " & ex.Message, "Error")
         End Try
-    End Sub
+
+        Return String.Empty
+    End Function
+
+
+
 End Class

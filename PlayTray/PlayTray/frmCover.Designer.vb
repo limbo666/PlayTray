@@ -93,7 +93,7 @@ Partial Class frmCover
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmCover"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmCover"
+        Me.Text = "disco"
         CType(Me.picCover, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

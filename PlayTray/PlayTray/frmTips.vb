@@ -12,6 +12,29 @@ Public Class frmTips
     ' Display timer
     Private displayDuration As Integer = 4000 ' 4 seconds
 
+
+
+    Public Sub SetImage(img As Image)
+        Try
+            If img Is Nothing Then
+                ' Logic to CLEAR the image
+                If picAlbumArt.Image IsNot Nothing Then
+                    picAlbumArt.Image.Dispose()
+                    picAlbumArt.Image = Nothing
+                End If
+                picAlbumArt.Visible = False
+                picAlbumArt.Tag = Nothing ' Clear the stored path
+                picAlbumArt.Cursor = Cursors.Default
+            Else
+                ' Logic to SET the image
+                picAlbumArt.Image = img
+                picAlbumArt.Visible = True
+                picAlbumArt.Cursor = Cursors.Hand
+            End If
+        Catch ex As Exception
+            ' Silent fail
+        End Try
+    End Sub
     Private Sub frmTips_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Form setup
         Me.FormBorderStyle = FormBorderStyle.None

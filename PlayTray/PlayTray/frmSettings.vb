@@ -1,7 +1,8 @@
 ﻿
 Imports System.Diagnostics
-Imports System.Net.Sockets
 Imports System.IO
+Imports System.Net
+Imports System.Net.Sockets
 
 Public Class frmSettings
 
@@ -45,9 +46,6 @@ Public Class frmSettings
             "View troubleshooting guide with manual setup instructions." & vbCrLf &
             "Includes PowerShell commands and common issues.")
 
-            ' Refresh IPs button
-            tooltip.SetToolTip(btnRefreshIPs,
-            "Refresh the list of available network interfaces.")
 
         Catch ex As Exception
             ' Silent fail - tooltips are not critical
@@ -84,10 +82,10 @@ Public Class frmSettings
             numServerPort.Value = g_SettingsManager.ServerPort
 
             ' Populate IP addresses
-            PopulateBindAddresses()
+            '   PopulateBindAddresses()
 
             ' Select saved address
-            SelectBindAddress(g_SettingsManager.ServerBindAddress)
+            '    SelectBindAddress(g_SettingsManager.ServerBindAddress)
 
             UpdateServerStatus()
 
@@ -138,7 +136,7 @@ Public Class frmSettings
             ' === NETWORK TAB ===
             g_SettingsManager.EnableServer = chkEnableServer.Checked
             g_SettingsManager.ServerPort = CInt(numServerPort.Value)
-            g_SettingsManager.ServerBindAddress = GetSelectedBindAddress()
+            '   g_SettingsManager.ServerBindAddress = GetSelectedBindAddress()
 
             ' === ADVANCED TAB ===
             g_SettingsManager.AutoCloseEnabled = chkAutoClose.Checked
@@ -202,25 +200,32 @@ Public Class frmSettings
     End Sub
 
     Private Sub UpdateServerStatus()
-        If chkEnableServer.Checked Then
-            Dim bindAddr As String = GetSelectedBindAddress()
-            Dim port As Integer = CInt(numServerPort.Value)
+        Dim port As Integer = CInt(numServerPort.Value)
 
-            Dim statusText As String = ""
+        ' 1. Check if the Server Object actually exists and is running
+        Dim isActuallyRunning As Boolean = False
+        If g_HTTPServer IsNot Nothing AndAlso g_HTTPServer.IsRunning Then
+            isActuallyRunning = True
+        End If
 
-            If bindAddr = "*" Then
-                statusText = $"Server will bind to all interfaces on port {port}"
-            Else
-                statusText = $"Server will bind to:" & vbCrLf &
-                        $"• localhost:{port}" & vbCrLf &
-                        $"• 127.0.0.1:{port}" & vbCrLf &
-                        $"• {bindAddr}:{port}"
-            End If
-
-            lblServerStatus.Text = statusText
+        ' 2. Update Label based on REAL status
+        If isActuallyRunning Then
+            ' Case: Running
+            lblServerStatus.Text = $"✅ Server is RUNNING" & vbCrLf &
+                                   $"Listening on: http://+:{port}/" & vbCrLf &
+                                   $"(All Network Interfaces)"
             lblServerStatus.ForeColor = Color.Green
+
+        ElseIf chkEnableServer.Checked Then
+            ' Case: Enabled in settings, but not running yet (needs restart or Apply)
+            lblServerStatus.Text = "⚠️ Server is currently STOPPED" & vbCrLf &
+                                   "Save settings and Restart PlayTray" & vbCrLf &
+                                   "to start the server."
+            lblServerStatus.ForeColor = Color.FromArgb(200, 100, 0) ' Dark Orange
+
         Else
-            lblServerStatus.Text = "Server disabled"
+            ' Case: Disabled
+            lblServerStatus.Text = "🛑 Server is DISABLED"
             lblServerStatus.ForeColor = Color.Gray
         End If
     End Sub
@@ -262,98 +267,8 @@ Public Class frmSettings
         End If
     End Sub
 
-    Private Sub PopulateBindAddresses()
-        Try
-            cboBindAddress.Items.Clear()
 
-            ' Get all local IP addresses (NO localhost options)
-            Dim hostName As String = System.Net.Dns.GetHostName()
-            Dim addresses = System.Net.Dns.GetHostAddresses(hostName)
 
-            Dim hasNetworkIP As Boolean = False
-
-            For Each addr In addresses
-                ' Only IPv4 addresses
-                If addr.AddressFamily = System.Net.Sockets.AddressFamily.InterNetwork Then
-                    ' Skip loopback addresses (127.x.x.x)
-                    If Not addr.ToString().StartsWith("127.") Then
-                        Dim displayName As String = $"{addr} (Network Interface)"
-                        cboBindAddress.Items.Add(New BindAddressItem(displayName, addr.ToString()))
-                        hasNetworkIP = True
-                    End If
-                End If
-            Next
-
-            ' Add separator if we have network IPs
-            If hasNetworkIP Then
-                cboBindAddress.Items.Add(New BindAddressItem("--- Advanced ---", ""))
-            End If
-
-            ' Add "All Interfaces" option
-            cboBindAddress.Items.Add(New BindAddressItem("All Network Interfaces (*)", "*"))
-
-            ' Select first item if nothing selected
-            If cboBindAddress.SelectedIndex < 0 AndAlso cboBindAddress.Items.Count > 0 Then
-                cboBindAddress.SelectedIndex = 0
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show("Error loading network addresses: " & ex.Message, "Error")
-        End Try
-    End Sub
-
-    Private Sub SelectBindAddress(address As String)
-        Try
-            ' If address is localhost or 127.0.0.1, select first network IP
-            If address = "localhost" OrElse address = "127.0.0.1" Then
-                If cboBindAddress.Items.Count > 0 Then
-                    cboBindAddress.SelectedIndex = 0
-                End If
-                Return
-            End If
-
-            ' Find matching address
-            For i As Integer = 0 To cboBindAddress.Items.Count - 1
-                Dim item = TryCast(cboBindAddress.Items(i), BindAddressItem)
-                If item IsNot Nothing AndAlso item.Address.Equals(address, StringComparison.OrdinalIgnoreCase) Then
-                    cboBindAddress.SelectedIndex = i
-                    Return
-                End If
-            Next
-
-            ' Not found, default to first
-            If cboBindAddress.Items.Count > 0 Then
-                cboBindAddress.SelectedIndex = 0
-            End If
-
-        Catch ex As Exception
-            ' Silent fail
-        End Try
-    End Sub
-
-    Private Sub btnRefreshIPs_Click(sender As Object, e As EventArgs) Handles btnRefreshIPs.Click
-        Dim currentSelection As String = GetSelectedBindAddress()
-        PopulateBindAddresses()
-        SelectBindAddress(currentSelection)
-    End Sub
-
-    Private Function GetSelectedBindAddress() As String
-        Try
-            Dim item = TryCast(cboBindAddress.SelectedItem, BindAddressItem)
-            If item IsNot Nothing Then
-                Return item.Address
-            End If
-        Catch
-            ' Fall through
-        End Try
-        Return "localhost"
-    End Function
-
-    Private Sub cboBindAddress_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboBindAddress.SelectedIndexChanged
-        If settingsLoaded Then
-            UpdateServerStatus()
-        End If
-    End Sub
 
     ' Helper class for combobox items
     Private Class BindAddressItem
@@ -370,33 +285,79 @@ Public Class frmSettings
         End Function
     End Class
 
+    ' [In frmSettings.vb]
+
     Private Sub btnSetupNetwork_Click(sender As Object, e As EventArgs) Handles btnSetupNetwork.Click
         Try
-            Dim bindAddress As String = GetSelectedBindAddress()
             Dim port As Integer = CInt(numServerPort.Value)
 
-            ' Check if already reserved
-            If IsUrlReserved(bindAddress, port) Then
-                MessageBox.Show("Network access is already configured for this address and port.", "Already Setup", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' Check if the correct Wildcard rule exists
+            If IsUrlReserved(port) Then
+                MessageBox.Show("Network access is already configured correctly (Wildcard +).", "Already Setup", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
             End If
 
             ' Show explanation
             Dim result = MessageBox.Show(
-            "This will configure Windows to allow network access without requiring Administrator rights." & vbCrLf & vbCrLf &
-            "This is a one-time setup that requires Administrator privileges." & vbCrLf & vbCrLf &
-            "After this setup, PlayTray can run normally without admin rights." & vbCrLf & vbCrLf &
-            "Continue?",
-            "Setup Network Access",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question)
+        "This will configure Windows to allow network access on ALL interfaces (Wildcard)." & vbCrLf & vbCrLf &
+        "Command to run: netsh http add urlacl url=http://+:" & port & "/ user=Everyone" & vbCrLf & vbCrLf &
+        "This requires Administrator privileges.",
+        "Setup Network Access",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question)
 
             If result = DialogResult.Yes Then
-                SetupUrlReservation(bindAddress, port)
+                SetupUrlReservation(port)
             End If
 
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' UPDATED: Check for the specific "+" wildcard rule
+    Private Function IsUrlReserved(port As Integer) As Boolean
+        Try
+            Dim psi As New ProcessStartInfo()
+            psi.FileName = "netsh"
+            psi.Arguments = "http show urlacl"
+            psi.RedirectStandardOutput = True
+            psi.UseShellExecute = False
+            psi.CreateNoWindow = True
+
+            Dim process As Process = Process.Start(psi)
+            Dim output As String = process.StandardOutput.ReadToEnd()
+            process.WaitForExit()
+
+            ' Check specifically for the Strong Wildcard (+)
+            Return output.Contains($"http://+:{port}/")
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    ' UPDATED: Register the "+" wildcard
+    Private Sub SetupUrlReservation(port As Integer)
+        Try
+            ' We now use "+" (Strong Wildcard) which matches the new Server code
+            Dim arguments As String = $"http add urlacl url=http://+:{port}/ user=Everyone"
+
+            Dim psi As New ProcessStartInfo()
+            psi.FileName = "netsh"
+            psi.Arguments = arguments
+            psi.Verb = "runas" ' Request elevation
+            psi.UseShellExecute = True
+
+            Dim process As Process = Process.Start(psi)
+            process.WaitForExit()
+
+            If process.ExitCode = 0 Then
+                MessageBox.Show("Success! Network access configured.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("Setup failed. Please try running PlayTray as Administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error")
         End Try
     End Sub
 
@@ -634,36 +595,37 @@ Public Class frmSettings
             Throw ' Re-throw to main handler
         End Try
     End Sub
+
     Private Sub btnTestFirewall_Click(sender As Object, e As EventArgs) Handles btnTestFirewall.Click
         Try
             Dim port As Integer = CInt(numServerPort.Value)
-            Dim bindAddress As String = GetSelectedBindAddress()
+            Dim testIP As String = "127.0.0.1" ' Default fallback
 
-            ' Get actual IP if localhost selected
-            Dim testIP As String = bindAddress
-            If bindAddress = "localhost" Then
-                testIP = "127.0.0.1"
-            ElseIf bindAddress = "*" Then
-                ' Get first non-localhost IP
+            ' Automatically find the first active Network IP (LAN IP)
+            Try
                 Dim hostName As String = System.Net.Dns.GetHostName()
                 Dim addresses = System.Net.Dns.GetHostAddresses(hostName)
+
                 For Each addr In addresses
+                    ' Find IPv4 that is NOT localhost (127.0.0.1)
                     If addr.AddressFamily = System.Net.Sockets.AddressFamily.InterNetwork AndAlso
-                   Not addr.ToString().StartsWith("127.") Then
+                       Not IPAddress.IsLoopback(addr) Then
                         testIP = addr.ToString()
                         Exit For
                     End If
                 Next
-            End If
+            Catch
+                ' Ignore DNS errors, keep localhost default
+            End Try
 
             ' Show test info
             Dim testUrl As String = $"http://{testIP}:{port}/status"
 
             Dim msg As String = "Test this URL from another device on your network:" & vbCrLf & vbCrLf &
-                           testUrl & vbCrLf & vbCrLf &
-                           "You can also use PowerShell on this PC:" & vbCrLf &
-                           $"curl {testUrl}" & vbCrLf & vbCrLf &
-                           "Or open in browser: " & testUrl
+                               testUrl & vbCrLf & vbCrLf &
+                               "You can also use PowerShell on this PC:" & vbCrLf &
+                               $"curl {testUrl}" & vbCrLf & vbCrLf &
+                               "Or open in browser: " & testUrl
 
             MessageBox.Show(msg, "Test Connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -752,4 +714,12 @@ Public Class frmSettings
 
         Return True
     End Function
+
+    Private Sub GroupBox6_Enter(sender As Object, e As EventArgs) Handles GroupBox6.Enter
+
+    End Sub
+
+    Private Sub lblServerStatus_Click(sender As Object, e As EventArgs) Handles lblServerStatus.Click
+
+    End Sub
 End Class
