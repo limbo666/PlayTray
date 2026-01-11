@@ -1,6 +1,7 @@
 # PlayTray
-_This is a port of my original xtremp3 player_ <br>
-A windows tray icon based streaming radio player with global hotkey support<br>
+_This is a port of my original xtremp3 player. The original code was posted on Codeplex (https://codeplexarchive.org/codeplex/project/xtremp3)_ <br> 
+   <br> 
+PlayTray is a windows tray icon based streaming radio player with global hotkey support<br>
 The player is not invasive great for working enviroment computers. No nagging interface no items show on taskbar.
 Easy control from tray icon and hotkeys
 Supports 
